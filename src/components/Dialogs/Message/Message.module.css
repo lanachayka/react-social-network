@@ -1,0 +1,12 @@
+.message {
+  color: var(--main-color);
+  font-size: 12px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+
+@media (min-width: 750px) {
+  .message {
+    font-size: 20px;
+  }
+}

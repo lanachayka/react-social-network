@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@500&display=swap");
+
+.app-wrapper {
+  --main-color: rgb(25, 15, 71);
+  --accent-color: rgb(72, 237, 243);
+  --active-color: white;
+  font-family: "Kaisei Opti", serif;
+}
+
+.app-wrapper {
+  margin: auto;
+  display: grid;
+  grid-template-areas:
+    "h h"
+    "n c";
+  grid-template-rows: 75px 1fr;
+  grid-template-columns: 1fr 9fr;
+}
+
+.app-wrapper-content {
+  grid-area: c;
+  margin-top: 35px;
+  margin-left: 20px;
+}

@@ -1,0 +1,40 @@
+.nav {
+  grid-area: n;
+  background-image: linear-gradient(
+      rgba(25, 15, 71, 0.5),
+      rgba(72, 237, 243, 0.5)
+    ),
+    url(./space.jpg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 15px;
+  padding-top: 30px;
+}
+
+.item {
+  font-size: 15px;
+  padding-right: 10px;
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+.item:hover {
+  text-decoration: underline;
+  color: var(--active-color);
+  cursor: pointer;
+}
+
+.active {
+  color: var(--active-color);
+}
+
+
+@media (min-width: 750px) {
+  .item {
+    font-size: 24px;
+  }
+  .title {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,33 @@
+.myposts {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  letter-spacing: 5px;
+  color: var(--main-color);
+}
+
+.textArea {
+  max-width: 150px;
+  margin-bottom: 15px;
+}
+
+.btn {
+  width: 100px;
+  height: 30px;
+  background-color: var(--main-color);
+  border: none;
+  color: var(--active-color);
+}
+
+.btn:hover {
+  background-color: var(--accent-color);
+  cursor: pointer;
+}
+
+@media (min-width: 750px) {
+  .textArea {
+    max-width: 500px;
+  }
+}

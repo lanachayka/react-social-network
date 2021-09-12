@@ -7,7 +7,8 @@ export default function MyPosts(props) {
   let newPostElement = React.createRef();
 
   const addPost = () => {
-    alert(newPostElement.current.value);
+    const text = newPostElement.current.value;
+    props.addPost(text);
   }
 
   return (

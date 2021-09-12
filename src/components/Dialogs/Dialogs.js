@@ -7,7 +7,7 @@ export default function Dialogs(props) {
 
    let newMessageElement = React.createRef();
 
-   const addMessage = () => {
+   const sendMessage = () => {
      alert(newMessageElement.current.value);
    };
   return (
@@ -32,8 +32,8 @@ export default function Dialogs(props) {
             className={st.textArea}
             placeholder="Your message..."
           ></textarea>
-          <button onClick={addMessage} className={st.btn}>
-            Add message
+          <button onClick={sendMessage} className={st.btn}>
+            Sent message
           </button>
         </div>
       </div>

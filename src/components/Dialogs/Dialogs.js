@@ -13,7 +13,7 @@ export default function Dialogs(props) {
   return (
     <div className={st.dialogs}>
       <div className={st.dialogsItems}>
-        {props.dialogsData.map((item) => (
+        {props.dialogs.dialogsData.map((item) => (
           <Dialog
             key={item.id}
             id={item.id}
@@ -23,7 +23,7 @@ export default function Dialogs(props) {
         ))}
       </div>
       <div className={st.messages}>
-        {props.messagesData.map((item) => (
+        {props.dialogs.messagesData.map((item) => (
           <Message key={item.id} message={item.message} />
         ))}
         <div className={st.add}>

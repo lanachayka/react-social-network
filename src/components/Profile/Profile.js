@@ -7,7 +7,12 @@ export default function Profile(props) {
     return (
       <div>
         <ProfileInfo />
-        <MyPosts postsData={props.postsData} addPost={props.addPost} />
+        <MyPosts
+          postsData={props.profile.postsData}
+          addPost={props.addPost}
+          updateNewPostText={props.updateNewPostText}
+          newPostText={props.profile.newPostText}
+        />
       </div>
     );
 }

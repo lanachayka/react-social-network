@@ -21,7 +21,7 @@
 
 .btn {
   width: 100px;
-  height: 30px;
+  height: 40px;
   background-color: var(--main-color);
   border: none;
   color: var(--active-color);

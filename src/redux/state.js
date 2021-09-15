@@ -1,4 +1,4 @@
- const store = {
+const store = {
   _state: {
     profile: {
       postsData: [
@@ -75,29 +75,36 @@
       ],
     },
   },
-  getState() {
-    return this._state;
-  },
   _callSubscriber() {
     console.log("State changed");
   },
-   addPost() {
-    const newPost = {
-      id: this._state.profile.postsData[this._state.profile.postsData.length - 1] +
-      1,
-      message: this._state.profile.newPostText,
-      likeCount: 0,
-    };
-    this._state.profile.postsData.push(newPost);
-    this._state.profile.newPostText = "";
-    this._callSubscriber(this._state);
-  },
-  updateNewPostText(newText) {
-    this._state.profile.newPostText = newText;
-    this._callSubscriber(this._state);
+
+  getState() {
+    return this._state;
   },
   subscribe(observer) {
     this._callSubscriber = observer;
+  },
+
+  dispatch(action) {
+    switch (action.type) {
+      case "ADD-POST":
+        const newPost = {
+          id:
+            this._state.profile.postsData[
+              this._state.profile.postsData.length - 1
+            ] + 1,
+          message: this._state.profile.newPostText,
+          likeCount: 0,
+        };
+        this._state.profile.postsData.push(newPost);
+        this._state.profile.newPostText = "";
+        this._callSubscriber(this._state);
+      break;
+      case "UPDATE-NEW-POST-TEXT":
+          this._state.profile.newPostText = action.newText;
+          this._callSubscriber(this._state);
+    }
   },
 };
 

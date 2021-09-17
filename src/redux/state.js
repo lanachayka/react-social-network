@@ -1,7 +1,6 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT ="UPDATE-NEW-POST-TEXT"
-const SEND_MESSAGE = "SEND-MESSAGE";
-const UPDATE_NEW_MESSAGE = "UPDATE-NEW-MESSAGE";
+import profileReducer from './profileReducer'
+import messagesReducer from "./messagesReducer";
+import navbarReducer from "./navbarReducer";
 
 const store = {
   _state: {
@@ -93,50 +92,11 @@ const store = {
   },
 
   dispatch(action) {
-    switch (action.type) {
-      case ADD_POST:
-        const newPost = {
-          id:
-            this._state.profile.postsData[
-              this._state.profile.postsData.length - 1
-            ] + 1,
-          message: this._state.profile.newPostText,
-          likeCount: 0,
-        };
-        this._state.profile.postsData.push(newPost);
-        this._state.profile.newPostText = "";
-        this._callSubscriber(this._state);
-        break;
-      case UPDATE_NEW_POST_TEXT:
-        this._state.profile.newPostText = action.newText;
-        this._callSubscriber(this._state);
-        break;
-      case SEND_MESSAGE:
-        const newMessage = {
-          id:
-            this._state.messages.messagesData[
-              this._state.messages.messagesData.length - 1
-            ] + 1,
-          message: this._state.messages.newMessageText,
-        };
-        this._state.messages.messagesData.push(newMessage);
-        this._state.messages.newMessageText = "";
-        this._callSubscriber(this._state);
-        break;
-      case UPDATE_NEW_MESSAGE:
-        this._state.messages.newMessageText = action.newMessage;
-        this._callSubscriber(this._state);
-    }
+    this._state.profile = profileReducer(this._state.profile, action);
+    this._state.messages = messagesReducer(this._state.messages, action);
+    this._state.navbar = navbarReducer(this._state.navbar, action);
+    this._callSubscriber(this._state);
   },
 };
-
-export const addPostActionCreator = () => ({ type: ADD_POST });
-export const updateNewPostTextActionCreator = (newText) => ({ type: UPDATE_NEW_POST_TEXT, newText: newText })
-export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE });
-export const updateNewMessageActionCreator = (newMessage) => ({
-  type: UPDATE_NEW_MESSAGE,
-  newMessage: newMessage,
-});
-
 
 export default store;

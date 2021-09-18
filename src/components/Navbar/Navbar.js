@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Friends from "./Friends/Friends";
+import FriendsContainer from "./Friends/FriendsContainer";
 import st from "./Navbar.module.css";
 
 export default function Navbar(props) {
@@ -22,7 +22,7 @@ export default function Navbar(props) {
       <NavLink to="/settings" activeClassName={st.active} className={st.item}>
         SETTINGS
       </NavLink>
-      <Friends friends={props.friends}/>
+      <FriendsContainer store={props.store} />
     </nav>
   );
 }

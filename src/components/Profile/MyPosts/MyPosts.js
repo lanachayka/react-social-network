@@ -1,8 +1,4 @@
 import React from 'react'
-import {
-  addPostActionCreator,
-  updateNewPostTextActionCreator,
-} from "../../../redux/profileReducer";
 import st from "./MyPosts.module.css";
 import Post from './Post/Post';
 
@@ -10,13 +6,13 @@ export default function MyPosts(props) {
 
   let newPostElement = React.createRef();
 
-  const addPost = () => {
-    props.dispatch(addPostActionCreator());
+  const onAddPost = () => {
+    props.addPost();
   }
 
   const onPostChange = () => {
     const text = newPostElement.current.value;
-    props.dispatch(updateNewPostTextActionCreator(text));
+    props.updateNewPostText(text);
   }
 
   return (
@@ -30,7 +26,7 @@ export default function MyPosts(props) {
           placeholder="Start your story..."
           value={props.newPostText}
         ></textarea>
-        <button onClick={addPost} className={st.btn}>
+        <button onClick={onAddPost} className={st.btn}>
           Add post
         </button>
       </div>

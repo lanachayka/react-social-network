@@ -1,12 +1,11 @@
 import React from "react";
+import StoreContext from "../../../storeContext";
 import Friends from "./Friends";
 
-
-export default function FriendsContainer(props) {
-
-  const state = props.store.getState();
-
+export default function FriendsContainer() {
   return (
-    <Friends friends={state.navbar.friends}/>
+    <StoreContext.Consumer>
+      {store => (<Friends friends={store.getState().navbar.friends} />)}
+    </StoreContext.Consumer>
   );
 }

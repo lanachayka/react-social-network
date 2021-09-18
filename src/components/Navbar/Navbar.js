@@ -22,7 +22,7 @@ export default function Navbar(props) {
       <NavLink to="/settings" activeClassName={st.active} className={st.item}>
         SETTINGS
       </NavLink>
-      <FriendsContainer store={props.store} />
+      <FriendsContainer />
     </nav>
   );
 }

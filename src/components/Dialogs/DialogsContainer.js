@@ -4,25 +4,22 @@ import {
   updateNewMessageActionCreator,
 } from "../../redux/messagesReducer";
 import Dialogs from "./Dialogs";
+import StoreContext from "../../storeContext";
 
-export default function DialogsContainer(props) {
-
-  const state = props.store.getState();
-
-  const sendMessage = () => {
-    props.store.dispatch(sendMessageActionCreator());
-  };
-  const updateNewMessage = (text) => {
-     props.store.dispatch(updateNewMessageActionCreator(text));
-  };
-
+export default function DialogsContainer() {
   return (
-    <Dialogs
-      dialogsData={state.messages.dialogsData}
-      messagesData={state.messages.messagesData}
-      newMessageText={state.messages.newMessageText}
-      sendMessage={sendMessage}
-      updateNewMessage={updateNewMessage}
-    />
+    <StoreContext.Consumer>
+      {store => (
+        <Dialogs
+          dialogsData={store.getState().messages.dialogsData}
+          messagesData={store.getState().messages.messagesData}
+          newMessageText={store.getState().messages.newMessageText}
+          sendMessage={() => store.dispatch(sendMessageActionCreator())}
+          updateNewMessage={(text) =>
+            store.dispatch(updateNewMessageActionCreator(text))
+          }
+        />
+      )}
+    </StoreContext.Consumer>
   );
 }

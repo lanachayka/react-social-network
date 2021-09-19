@@ -10,8 +10,8 @@ export default function Dialog(props) {
       className={st.dialog}
     >
       <div className={st.user}>
-        <img className={st.img} src={props.photo}></img>
-      {props.userName}
+        <img className={st.img} src={props.photo} alt="Avatar example"></img>
+        {props.userName}
       </div>
     </NavLink>
   );

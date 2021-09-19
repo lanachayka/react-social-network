@@ -8,8 +8,8 @@ export default function Friends(props) {
       {props.friends.map((item) => (
         <div key={item.id} className={st.friends}>
           <div className={st.friend}>
-            <img className={st.img} src={item.photo}></img>
-                  <p className={st.text}>{item.name}</p>
+            <img className={st.img} src={item.photo} alt="Avatar example"></img>
+            <p className={st.text}>{item.name}</p>
           </div>
         </div>
       ))}

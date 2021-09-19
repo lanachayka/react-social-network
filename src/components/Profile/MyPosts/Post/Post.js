@@ -8,6 +8,7 @@ export default function Post(props) {
           <img
             className={st.photo}
             src="https://st2.depositphotos.com/3873339/8013/i/600/depositphotos_80131050-stock-photo-realistic-square-picture-frame-on.jpg"
+            alt="Avatar example"
           ></img>
           <p>{props.message}</p>
         </div>

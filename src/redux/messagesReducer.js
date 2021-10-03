@@ -73,8 +73,8 @@ const messagesReducer = (state = initialState, action) => {
 
 export default messagesReducer;
 
-export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE });
-export const updateNewMessageActionCreator = (newMessage) => ({
+export const sendMessageAC = () => ({ type: SEND_MESSAGE });
+export const updateNewMessageAC = (newMessage) => ({
   type: UPDATE_NEW_MESSAGE,
   newMessage: newMessage,
 });

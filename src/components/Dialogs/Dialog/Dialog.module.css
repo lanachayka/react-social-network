@@ -1,7 +1,7 @@
 .dialog {
   text-decoration: none;
   color: var(--main-color);
-  font-size: 12px;
+  font-size: 20px;
   margin-bottom: 15px;
 }
 
@@ -22,17 +22,8 @@
 
 .img {
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   margin-right: 5px;
 }
 
-@media (min-width: 750px) {
-  .img {
-    width: 50px;
-    height: 50px;
-  }
-  .dialog {
-    font-size: 20px;
-  }
-}

@@ -9,7 +9,7 @@
 }
 
 .textArea {
-  max-width: 150px;
+  max-width: 500px;
   margin-bottom: 15px;
 }
 
@@ -26,8 +26,3 @@
   cursor: pointer;
 }
 
-@media (min-width: 750px) {
-  .textArea {
-    max-width: 500px;
-  }
-}

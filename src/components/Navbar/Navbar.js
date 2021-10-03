@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import FriendsContainer from "./Friends/FriendsContainer";
 import st from "./Navbar.module.css";
+import search from "./search_white.svg";
 
 export default function Navbar(props) {
   return (
@@ -17,6 +18,12 @@ export default function Navbar(props) {
       </NavLink>
       <NavLink to="/music" activeClassName={st.active} className={st.item}>
         MUSIC
+      </NavLink>
+      <NavLink to="/users" activeClassName={st.active} className={st.item}>
+        <div className={st.icon}>
+          <img src={search} alt="serach icon"/>
+          USERS
+        </div>
       </NavLink>
       <br />
       <NavLink to="/settings" activeClassName={st.active} className={st.item}>

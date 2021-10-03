@@ -13,7 +13,7 @@
 }
 
 .item {
-  font-size: 15px;
+  font-size: 24px;
   padding-right: 10px;
   text-decoration: none;
   color: var(--accent-color);
@@ -29,12 +29,10 @@
   color: var(--active-color);
 }
 
-
-@media (min-width: 750px) {
-  .item {
-    font-size: 24px;
-  }
-  .title {
-    font-size: 24px;
-  }
+.icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
+

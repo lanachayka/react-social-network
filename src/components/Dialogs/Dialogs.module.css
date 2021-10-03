@@ -15,7 +15,7 @@
 }
 
 .textArea {
-  max-width: 100px;
+  max-width: 300px;
   margin-bottom: 15px;
 }
 
@@ -30,12 +30,6 @@
 .btn:hover {
   background-color: var(--accent-color);
   cursor: pointer;
-}
-
-@media (min-width: 750px) {
-  .textArea {
-    max-width: 300px;
-  }
 }
 
 

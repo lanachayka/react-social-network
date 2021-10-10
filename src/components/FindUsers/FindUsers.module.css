@@ -54,6 +54,15 @@
   margin-right: 10px;
 }
 
+.smallbtnActive {
+  width: 30px;
+  height: 30px;
+  background-color: var(--accent-color);
+  border: none;
+  color: var(--active-color);
+  margin-right: 10px;
+}
+
 .smallbtn:hover {
   background-color: var(--accent-color);
   cursor: pointer;

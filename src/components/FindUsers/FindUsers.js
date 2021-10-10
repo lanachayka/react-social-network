@@ -10,7 +10,7 @@ export default class FindUsers extends Component {
   componentDidMount() {
     axios
       .get(
-        "https://social-network.samuraijs.com/api/1.0/users?API-KEY=d0ce4cd8-d0d2-4152-99ad-f6e1407cb23f",
+        "https://social-network.samuraijs.com/api/1.0/users",
         {
           headers: {
             "API-KEY": "d4193994-fff7-4712-976d-d1bc0305c9fc",
@@ -22,6 +22,13 @@ export default class FindUsers extends Component {
   render() {
     return (
       <div>
+        <div className={st.buttons}>
+          <button className={st.smallbtn}>1</button>
+          <button className={st.smallbtn}>2</button>
+          <button className={st.smallbtn}>3</button>
+          <button className={st.smallbtn}>4</button>
+          <button className={st.smallbtn}>5</button>
+        </div>
         {this.props.users.map((u) => (
           <div key={u.id} className={st.user}>
             <div className={st.container}>

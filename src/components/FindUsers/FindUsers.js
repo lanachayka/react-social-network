@@ -10,7 +10,12 @@ export default class FindUsers extends Component {
   componentDidMount() {
     axios
       .get(
-        "https://social-network.samuraijs.com/api/1.0/users?API-KEY=d0ce4cd8-d0d2-4152-99ad-f6e1407cb23f"
+        "https://social-network.samuraijs.com/api/1.0/users?API-KEY=d0ce4cd8-d0d2-4152-99ad-f6e1407cb23f",
+        {
+          headers: {
+            "API-KEY": "d4193994-fff7-4712-976d-d1bc0305c9fc",
+          },
+        }
       )
       .then((response) => this.props.setUsers(response.data.items));
   }

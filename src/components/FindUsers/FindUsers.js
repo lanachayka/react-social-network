@@ -1,33 +1,53 @@
-import React from "react";
+import axios from "axios";
+import React, { Component } from "react";
 import st from "./FindUsers.module.css";
+import userPhoto from "../../assets/img/user.jpg";
 
-export default function FindUsers(props) {
-  return (
-    <div>
-      {props.users.map((u) => (
-        <div key={u.id} className={st.user}>
-          <div className={st.container}>
-            <img className={st.photo} src={u.photo} alt={u.fullName} />
-            {u.followed ? (
-              <button onClick={() => props.unfollow(u.id)} className={st.btn}>
-                UNFOLLOW
-              </button>
-            ) : (
-              <button onClick={() => props.follow(u.id)} className={st.btn}>
-                FOLLOW
-              </button>
-            )}
+export default class FindUsers extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    if (this.props.users.length === 0) {
+      axios
+        .get("https://social-network.samuraijs.com/api/1.0/users")
+        .then((response) => this.props.setUsers(response.data.items));
+    }
+  }
+  render() {
+    return (
+      <div>
+        {this.props.users.map((u) => (
+          <div key={u.id} className={st.user}>
+            <div className={st.container}>
+              <img
+                className={st.photo}
+                src={u.photos.small !== null ? u.photos.small : userPhoto}
+                alt={u.name}
+              />
+              {u.followed ? (
+                <button
+                  onClick={() => this.props.unfollow(u.id)}
+                  className={st.btn}
+                >
+                  UNFOLLOW
+                </button>
+              ) : (
+                <button
+                  onClick={() => this.props.follow(u.id)}
+                  className={st.btn}
+                >
+                  FOLLOW
+                </button>
+              )}
+            </div>
+            <div className={st.info}>
+              <h3>{u.name}</h3>
+              <p>{u.status}</p>
+            </div>
           </div>
-          <div className={st.info}>
-            <h3>{u.fullName}</h3>
-            <p>{u.status}</p>
-          </div>
-          <p>
-            {u.location.country},<br />
-            {u.location.city}
-          </p>
-        </div>
-      ))}
-    </div>
-  );
+        ))}
+      </div>
+    );
+  }
 }

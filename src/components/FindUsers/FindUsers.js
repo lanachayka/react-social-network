@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import st from "./FindUsers.module.css";
 import userPhoto from "../../assets/img/user.jpg";
+import { NavLink } from "react-router-dom";
 
 export default function FindUsers(props) {
   const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -26,11 +27,13 @@ export default function FindUsers(props) {
       {props.users.map((u) => (
         <div key={u.id} className={st.user}>
           <div className={st.container}>
-            <img
-              className={st.photo}
-              src={u.photos.small !== null ? u.photos.small : userPhoto}
-              alt={u.name}
-            />
+            <NavLink to={`./profile/${u.id}`}>
+              <img
+                className={st.photo}
+                src={u.photos.small !== null ? u.photos.small : userPhoto}
+                alt={u.name}
+              />
+            </NavLink>
             {u.followed ? (
               <button onClick={() => props.unfollow(u.id)} className={st.btn}>
                 UNFOLLOW

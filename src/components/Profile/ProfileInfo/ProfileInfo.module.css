@@ -30,3 +30,13 @@
   letter-spacing: 5px;
   margin-left: 30px;
 }
+
+.link {
+  text-decoration: none;
+  color: var(--main-color);
+}
+
+.link:hover {
+  text-decoration: none;
+  color: var(--accent-color);
+}

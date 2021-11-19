@@ -25,42 +25,42 @@ export default function ProfileInfo(props) {
         <h3>Contacts:</h3>
         {props.profile.contacts.facebook && (
           <li>
-            <a href={props.profile.contacts.facebook}>Facebook</a>
+            <a className={st.link} href={props.profile.contacts.facebook}>Facebook</a>
           </li>
         )}
         {props.profile.contacts.website && (
           <li>
-            <a href={props.profile.contacts.website}>Website</a>
+            <a className={st.link} href={props.profile.contacts.website}>Website</a>
           </li>
         )}
         {props.profile.contacts.vk && (
           <li>
-            <a href={props.profile.contacts.vk}>VK</a>
+            <a className={st.link} href={props.profile.contacts.vk}>VK</a>
           </li>
         )}
         {props.profile.contacts.twitter && (
           <li>
-            <a href={props.profile.contacts.twitter}>Twitter</a>
+            <a className={st.link} href={props.profile.contacts.twitter}>Twitter</a>
           </li>
         )}
         {props.profile.contacts.instagram && (
           <li>
-            <a href={props.profile.contacts.instagram}>Instagram</a>
+            <a className={st.link} href={props.profile.contacts.instagram}>Instagram</a>
           </li>
         )}
         {props.profile.contacts.youtube && (
           <li>
-            <a href={props.profile.contacts.youtube}>Youtube</a>
+            <a className={st.link} href={props.profile.contacts.youtube}>Youtube</a>
           </li>
         )}
         {props.profile.contacts.github && (
           <li>
-            <a href={props.profile.contacts.github}>Github</a>
+            <a className={st.link} href={props.profile.contacts.github}>Github</a>
           </li>
         )}
         {props.profile.contacts.mainLink && (
           <li>
-            <a href={props.profile.contacts.mainLink}>Main Link</a>
+            <a className={st.link} href={props.profile.contacts.mainLink}>Main Link</a>
           </li>
         )}
       </ul>

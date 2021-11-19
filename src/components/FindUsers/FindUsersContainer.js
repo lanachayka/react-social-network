@@ -20,7 +20,7 @@ class FindUsersContainer extends Component {
     this.props.setIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials:true})
       .then((response) => {
         this.props.setIsFetching(false);
         this.props.setUsers(response.data.items);
@@ -33,13 +33,7 @@ class FindUsersContainer extends Component {
     this.props.setCurrentPage(pageNumber);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
-        {
-          headers: {
-            "API-KEY": "d4193994-fff7-4712-976d-d1bc0305c9fc",
-          },
-        }
-      )
+        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize} `, { withCredentials: true})
       .then((response) => {
         this.props.setIsFetching(false);
         this.props.setUsers(response.data.items);

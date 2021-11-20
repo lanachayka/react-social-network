@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import st from "./FindUsers.module.css";
 import userPhoto from "../../assets/img/user.jpg";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
+import { followAPI } from "../../api/api";
 
 export default function FindUsers(props) {
 
@@ -40,17 +40,9 @@ export default function FindUsers(props) {
             </NavLink>
             {u.followed ? (
               <button onClick={() => {
-                axios
-                  .delete(
-                    `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                    {
-                      withCredentials: true,
-                      headers: {
-                        "API-KEY": "f406f314-0e27-4ae0-9815-6188b0f3b0b0"
-                      }
-                    })
-                  .then((response) => {
-                    if (response.data.resultCode === 0) {
+                followAPI.unfollow(u.id)
+                  .then((data) => {
+                    if (data.resultCode === 0) {
                       props.unfollow(u.id)
                     }
                   });
@@ -58,24 +50,14 @@ export default function FindUsers(props) {
                 UNFOLLOW
               </button>
             ) : (
-                <button onClick={() => {
-                  axios
-                    .post(
-                      `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                      {},
-                      {
-                        withCredentials: true,
-                        headers: {
-                          "API-KEY": "f406f314-0e27-4ae0-9815-6188b0f3b0b0"
-                        }
-                      }
-                    )
-                    .then((response) => {
-                      if (response.data.resultCode === 0) {
-                        props.follow(u.id)
-                      }
-                    });
-                }} className={st.btn}>
+              <button onClick={() => {
+                followAPI.follow(u.id)
+                  .then((data) => {
+                    if (data.resultCode === 0) {
+                      props.follow(u.id)
+                    }
+                  });
+              }} className={st.btn}>
                 FOLLOW
               </button>
             )}

@@ -14,4 +14,22 @@ export const userAPI = {
             .then(response => response.data);
     }
 }
+
+export const followAPI = {
+    follow(id) {
+        return instance.post(`follow/${id}`)
+            .then(response => response.data);
+    },
+    unfollow(id) {
+        return instance.delete(`follow/${id}`)
+            .then(response => response.data);
+    }
+}
+
+export const authAPI = {
+    getAuthUserData() {
+        return instance.get(`auth/me`)
+            .then(response => response.data);
+    }
+}
     

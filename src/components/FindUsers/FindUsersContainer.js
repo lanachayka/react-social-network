@@ -8,6 +8,7 @@ import {
   setTotalUsersCount,
   setUsers,
   unfollow,
+  setFollowingProgress
 } from "../../redux/findUsersReducer";
 import Preloader from "../common/Preloader/Preloader";
 import { userAPI } from "../../api/api";
@@ -41,13 +42,8 @@ class FindUsersContainer extends Component {
           <Preloader />
         ) : (
           <FindUsers
-            totalUsersCount={this.props.totalUsersCount}
-            pageSize={this.props.pageSize}
-            onPageChanged={this.onPageChanged}
-            currentPage={this.props.currentPage}
-            unfollow={this.props.unfollow}
-            follow={this.props.follow}
-            users={this.props.users}
+           onPageChanged={this.onPageChanged}
+           {...this.props}
           />
         )}
       </>
@@ -62,6 +58,7 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.findUsers.totalUsersCount,
     currentPage: state.findUsers.currentPage,
     isFetching: state.findUsers.isFetching,
+    followingInProgress: state.findUsers.followingInProgress,
   };
 };
 
@@ -72,4 +69,5 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   setTotalUsersCount,
   setIsFetching,
+  setFollowingProgress,
 })(FindUsersContainer);

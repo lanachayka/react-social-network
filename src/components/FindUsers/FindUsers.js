@@ -39,23 +39,27 @@ export default function FindUsers(props) {
               />
             </NavLink>
             {u.followed ? (
-              <button onClick={() => {
+              <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={() => {
+                props.setFollowingProgress(true, u.id);
                 followAPI.unfollow(u.id)
                   .then((data) => {
                     if (data.resultCode === 0) {
                       props.unfollow(u.id)
                     }
+                    props.setFollowingProgress(false, u.id)
                   });
               }} className={st.btn}>
                 UNFOLLOW
               </button>
             ) : (
-              <button onClick={() => {
+                <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                props.setFollowingProgress(true, u.id);
                 followAPI.follow(u.id)
                   .then((data) => {
                     if (data.resultCode === 0) {
                       props.follow(u.id)
                     }
+                    props.setFollowingProgress(false, u.id);
                   });
               }} className={st.btn}>
                 FOLLOW

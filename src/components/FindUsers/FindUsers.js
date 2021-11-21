@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import st from "./FindUsers.module.css";
 import userPhoto from "../../assets/img/user.jpg";
 import { NavLink } from "react-router-dom";
-import { followAPI } from "../../api/api";
 
 export default function FindUsers(props) {
 
@@ -39,29 +38,17 @@ export default function FindUsers(props) {
               />
             </NavLink>
             {u.followed ? (
-              <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={() => {
-                props.setFollowingProgress(true, u.id);
-                followAPI.unfollow(u.id)
-                  .then((data) => {
-                    if (data.resultCode === 0) {
-                      props.unfollow(u.id)
-                    }
-                    props.setFollowingProgress(false, u.id)
-                  });
-              }} className={st.btn}>
+              <button
+                disabled={props.followingInProgress.some(id => id === u.id)}
+                onClick={() => props.unfollow(u.id)}
+                className={st.btn}>
                 UNFOLLOW
               </button>
             ) : (
-                <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                props.setFollowingProgress(true, u.id);
-                followAPI.follow(u.id)
-                  .then((data) => {
-                    if (data.resultCode === 0) {
-                      props.follow(u.id)
-                    }
-                    props.setFollowingProgress(false, u.id);
-                  });
-              }} className={st.btn}>
+                <button
+                  disabled={props.followingInProgress.some(id => id === u.id)}
+                  onClick={() => props.follow(u.id)}
+                  className={st.btn}>
                 FOLLOW
               </button>
             )}

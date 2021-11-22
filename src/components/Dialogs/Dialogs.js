@@ -5,15 +5,16 @@ import Message from "./Message/Message";
 
 export default function Dialogs(props) {
 
-   let newMessageElement = React.createRef();
+  let newMessageElement = React.createRef();
 
-   const onSendMessage = () => {
-     props.sendMessage();
+  const onSendMessage = () => {
+    props.sendMessage();
   };
   const onMessageChange = () => {
     const text = newMessageElement.current.value;
     props.updateNewMessage(text);
   };
+
 
   return (
     <div className={st.dialogs}>

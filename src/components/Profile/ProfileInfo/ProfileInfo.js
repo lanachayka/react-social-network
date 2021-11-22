@@ -1,6 +1,7 @@
 import React from "react";
 import st from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
+import Status from "./Status/Status";
 
 export default function ProfileInfo(props) {
   if (!props.profile) {
@@ -20,6 +21,7 @@ export default function ProfileInfo(props) {
       ></img>
         <h1 className={st.title}>{props.profile.fullName}</h1>
         <p className={st.text}>{props.profile.aboutMe}</p>
+        <p className={st.text}><Status status="Hello"/></p>
       </div>
       <ul>
         <h3>Contacts:</h3>

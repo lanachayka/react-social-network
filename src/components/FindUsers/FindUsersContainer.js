@@ -8,6 +8,8 @@ import {
   getUsers
 } from "../../redux/findUsersReducer";
 import Preloader from "../common/Preloader/Preloader";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class FindUsersContainer extends Component {
   constructor(props) {
@@ -29,8 +31,8 @@ class FindUsersContainer extends Component {
           <Preloader />
         ) : (
           <FindUsers
-           onPageChanged={this.onPageChanged}
-           {...this.props}
+            onPageChanged={this.onPageChanged}
+            {...this.props}
           />
         )}
       </>
@@ -49,9 +51,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
+export default compose(connect(
+  mapStateToProps, {
   follow,
   unfollow,
   setCurrentPage,
   getUsers
-})(FindUsersContainer);
+}),
+  withAuthRedirect
+)(FindUsersContainer)

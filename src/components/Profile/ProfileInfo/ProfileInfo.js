@@ -21,7 +21,12 @@ export default function ProfileInfo(props) {
       ></img>
         <h1 className={st.title}>{props.profile.fullName}</h1>
         <p className={st.text}>{props.profile.aboutMe}</p>
-        <p className={st.text}><Status status="Hello"/></p>
+        <p className={st.text}>
+          <Status
+            updateProfileStatus={props.updateProfileStatus}
+            status={props.status}
+          />
+        </p>
       </div>
       <ul>
         <h3>Contacts:</h3>

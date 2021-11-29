@@ -1,0 +1,36 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    color: var(--accent-color);
+}
+
+.inline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input {
+    width: 225px;
+    height: 30px;
+    margin-block: 10px;
+    border: var(--main-color) solid;
+}
+
+.btn {
+  width: 225px;
+  height: 30px;
+  background-color: var(--main-color);
+  border: none;
+  color: var(--active-color);
+}
+
+.btn:hover {
+  background-color: var(--accent-color);
+  cursor: pointer;
+}

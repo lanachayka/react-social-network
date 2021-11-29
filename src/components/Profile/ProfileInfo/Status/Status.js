@@ -1,34 +1,45 @@
-import React, { useState } from 'react'
+import React, { Component } from 'react'
 
-export default function Status(props) {
+export default class Status extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            editMode: false,
+            status: this.props.status
+        }
+    }
 
-    const [editMode, setEditMode] = useState(false);
+    activateEditMode = () => {
+        this.setState({ editMode: true });
+    }
 
-    const [status, setStatus] = useState(props.status);
+    deactivateEditMode = () => {
+        this.setState({ editMode: false });
+        this.props.updateProfileStatus(this.state.status);
+    }
     
-    const activateEditMode = () => {
-        setEditMode(true);
+    onStatusChange = (event) => {
+        this.setState({ status: event.target.value });
     }
 
-    const deactivateEditMode = (event) => {
-        setEditMode(false);
-        props.updateProfileStatus(status);
+    componentDidUpdate(prevProps) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({ status: this.props.status });
+        }
     }
 
-    const onStatusChange = (event) => {
-        setStatus(event.target.value);
+    render() {
+        return (
+            <>
+                {!this.state.editMode
+                    ? <span onDoubleClick={this.activateEditMode}>{this.props.status || "----------"}</span>
+                    : <input
+                        autoFocus={true}
+                        defaultValue={this.state.status}
+                        onBlur={this.deactivateEditMode}
+                        onChange={this.onStatusChange}
+                    ></input>}
+            </>
+        )
     }
-
-    return (
-        <>
-            {!editMode
-                ? <span onDoubleClick={activateEditMode}>{props.status || "----------"}</span>
-                : <input
-                    autoFocus={true}
-                    defaultValue={status}
-                    onBlur={deactivateEditMode}
-                    onChange={onStatusChange}
-                  ></input>}
-        </>
-    )
 }

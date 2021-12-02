@@ -10,10 +10,10 @@
 
 .textArea {
   min-width: 300px;
-  margin-bottom: 15px;
 }
 
 .btn {
+  margin-top: 15px;
   width: 100px;
   height: 30px;
   background-color: var(--main-color);

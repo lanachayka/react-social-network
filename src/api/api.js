@@ -42,11 +42,11 @@ export const authAPI = {
         return instance.get(`auth/me`)
             .then(response => response.data);
     },
-    authorize() {
+    login() {
         return instance.post(`auth/login`)
             .then(response => response.data);
     },
-    unfollow() {
+    logout() {
         return instance.delete(`auth/login`)
             .then(response => response.data);
     }

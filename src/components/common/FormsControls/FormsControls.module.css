@@ -1,0 +1,15 @@
+.formControl {
+    display: flex;
+    flex-direction: row;
+}
+
+.formControl.error input,
+.formControl.error textarea {
+    border-color: tomato;
+    border-width: 1.5px;
+}
+
+.formControl.error span{
+    color: tomato;
+    margin-left: 2px;
+}

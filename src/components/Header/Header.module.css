@@ -23,3 +23,23 @@
   text-decoration: none;
   font-size: 25px;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.btn {
+  height: 30px;
+  margin-left: 10px;
+  background-color: var(--active-color);
+  border: none;
+  color: var(--main-color);
+  margin-top: 3px;
+}
+
+.btn:hover {
+  background-color: var(--accent-color);
+  cursor: pointer;
+}

@@ -8,7 +8,6 @@ import {
   getUsers
 } from "../../redux/findUsersReducer";
 import Preloader from "../common/Preloader/Preloader";
-import withAuthRedirect from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 
 class FindUsersContainer extends Component {
@@ -57,6 +56,5 @@ export default compose(connect(
   unfollow,
   setCurrentPage,
   getUsers
-}),
-  withAuthRedirect
+})
 )(FindUsersContainer)

@@ -9,7 +9,7 @@ import { compose } from "redux";
 class ProfileContainer extends Component {
   componentDidMount() {
     let userId = this.props.match.params.userId;
-    userId === undefined ? userId = '2' : userId = this.props.match.params.userId;
+    userId === undefined ? userId = this.props.authorizedUserId : userId = this.props.match.params.userId;
     this.props.getProfileInfo(userId);
     this.props.getProfileStatus(userId);
   }
@@ -27,6 +27,8 @@ const mapStateToProps = (state) => {
   return {
     profile: state.profile.profile,
     status: state.profile.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
   };
 };
 

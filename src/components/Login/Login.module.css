@@ -34,3 +34,8 @@
   background-color: var(--accent-color);
   cursor: pointer;
 }
+
+.formSummaryError {
+    margin-bottom: 15px;
+    color: tomato;
+}

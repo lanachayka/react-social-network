@@ -29,9 +29,10 @@ const LoginForm = (props) => {
             <Field className={st.input} name="email" component={Input} placeholder="Login" validate={[requiredField]}/>
             <Field className={st.input} name="password" type="password" component={Input} placeholder="Password" validate={[requiredField]}/>
             <div className={st.inline}>
-                <Field component="input" type="checkBox" name="remeberMe"></Field>
+                <Field component="input" type="checkBox" name="rememberMe"></Field>
                 <p>Remember Me</p>
             </div>
+            {props.error && <div className={st.formSummaryError}>{props.error}</div>}
             <button className={st.btn}>Login</button>
         </form>)
 }

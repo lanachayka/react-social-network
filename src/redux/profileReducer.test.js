@@ -19,10 +19,16 @@ test('message of new post shuld be correct', () => {
   expect(newState.postsData[2].message).toBe('test text');
 });
 
-test('after deleting length of posts should me decrement', () => {
+test('after deleting length of posts should be decrement', () => {
   const action = deletePost(1);
   const newState = profileReducer(state, action);
   expect(newState.postsData.length).toBe(1);
+});
+
+test(`after deleting length of posts shouldn't be decrement if id is incorrect`, () => {
+  const action = deletePost("1");
+  const newState = profileReducer(state, action);
+  expect(newState.postsData.length).toBe(2);
 });
 
 

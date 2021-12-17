@@ -6,7 +6,7 @@ export default function FindUsers(props) {
   return (
     <div>
       <Pagination
-          totalUsersCount={props.totalUsersCount}
+          totalItemsCount={props.totalUsersCount}
           pageSize={props.pageSize}
           onPageChanged={props.onPageChanged}
           currentPage={props.currentPage}

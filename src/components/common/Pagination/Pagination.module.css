@@ -28,3 +28,17 @@
     background-color: var(--accent-color);
     cursor: pointer;
 }
+
+.btn {
+    width: 50px;
+    height: 30px;
+    background-color: var(--main-color);
+    border: none;
+    color: var(--active-color);
+    margin-right: 10px;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    cursor: pointer;
+}

@@ -1,0 +1,38 @@
+.user {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.info {
+    margin-right: 20px;
+}
+
+.photo {
+    height: 65px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.btn {
+    width: 100px;
+    height: 30px;
+    background-color: var(--main-color);
+    border: none;
+    color: var(--active-color);
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    cursor: pointer;
+}

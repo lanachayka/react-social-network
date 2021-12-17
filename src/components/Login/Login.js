@@ -1,19 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form'
 import { requiredField } from '../../utils/validators/validators'
-import { Input } from '../common/FormsControls/FormsControls'
+import {createField, Input} from '../common/FormsControls/FormsControls'
 import st from './Login.module.css'
 import { login, logout } from '../../redux/authReducer'
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router-dom'
 
-const Login = (props) => {
+const Login = ({login, isAuth}) => {
     const onSubmit = (formData) => {
         const { email, password, rememberMe } = formData;
-        props.login(email, password, rememberMe);
+        login(email, password, rememberMe);
     }
 
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to="/profile"/>
     }
 
@@ -23,18 +23,19 @@ const Login = (props) => {
     </div>)
 }
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
     return (
-        <form className={st.wrapper} onSubmit={props.handleSubmit}>
-            <Field className={st.input} name="email" component={Input} placeholder="Login" validate={[requiredField]}/>
-            <Field className={st.input} name="password" type="password" component={Input} placeholder="Password" validate={[requiredField]}/>
+        <form className={st.wrapper} onSubmit={handleSubmit}>
+            {createField(st.input, 'email', 'text', Input, 'Login', [requiredField])}
+            {createField(st.input, 'password', 'password', Input, 'Password', [requiredField])}
             <div className={st.inline}>
-                <Field component="input" type="checkBox" name="rememberMe"></Field>
+                {createField(null, 'rememberMe', 'checkBox', "input", null, [])}
                 <p>Remember Me</p>
             </div>
-            {props.error && <div className={st.formSummaryError}>{props.error}</div>}
+            {error && <div className={st.formSummaryError}>{error}</div>}
             <button className={st.btn}>Login</button>
-        </form>)
+        </form>
+    )
 }
 
 const LoginReduxForm = reduxForm({ form: "login" })(LoginForm);

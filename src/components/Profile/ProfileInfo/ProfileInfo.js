@@ -3,8 +3,9 @@ import st from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import Status from "./Status/Status";
 
-export default function ProfileInfo(props) {
-  if (!props.profile) {
+export default function ProfileInfo({profile, updateProfileStatus, status}) {
+  const {facebook, website, vk, twitter, instagram, youtube, github, mainLink} = profile.contacts;
+  if (!profile) {
     return <Preloader />;
   }
   return (
@@ -13,61 +14,61 @@ export default function ProfileInfo(props) {
       <img
         className={st.avatar}
         src={
-          props.profile.photos.small
-            ? props.profile.photos.small
+          profile.photos.small
+            ? profile.photos.small
             : "https://st2.depositphotos.com/3873339/8013/i/600/depositphotos_80131050-stock-photo-realistic-square-picture-frame-on.jpg"
         }
         alt="Avatar"
-      ></img>
-        <h1 className={st.title}>{props.profile.fullName}</h1>
-        <p className={st.text}>{props.profile.aboutMe}</p>
+      />
+        <h1 className={st.title}>{profile.fullName}</h1>
+        <p className={st.text}>{profile.aboutMe}</p>
         <p className={st.text}>
           <Status
-            updateProfileStatus={props.updateProfileStatus}
-            status={props.status}
+            updateProfileStatus={updateProfileStatus}
+            status={status}
           />
         </p>
       </div>
       <ul>
         <h3>Contacts:</h3>
-        {props.profile.contacts.facebook && (
+        {facebook && (
           <li>
-            <a className={st.link} href={props.profile.contacts.facebook}>Facebook</a>
+            <a className={st.link} href={facebook}>Facebook</a>
           </li>
         )}
-        {props.profile.contacts.website && (
+        {website && (
           <li>
-            <a className={st.link} href={props.profile.contacts.website}>Website</a>
+            <a className={st.link} href={website}>Website</a>
           </li>
         )}
-        {props.profile.contacts.vk && (
+        {vk && (
           <li>
-            <a className={st.link} href={props.profile.contacts.vk}>VK</a>
+            <a className={st.link} href={vk}>VK</a>
           </li>
         )}
-        {props.profile.contacts.twitter && (
+        {twitter && (
           <li>
-            <a className={st.link} href={props.profile.contacts.twitter}>Twitter</a>
+            <a className={st.link} href={twitter}>Twitter</a>
           </li>
         )}
-        {props.profile.contacts.instagram && (
+        {instagram && (
           <li>
-            <a className={st.link} href={props.profile.contacts.instagram}>Instagram</a>
+            <a className={st.link} href={instagram}>Instagram</a>
           </li>
         )}
-        {props.profile.contacts.youtube && (
+        {youtube && (
           <li>
-            <a className={st.link} href={props.profile.contacts.youtube}>Youtube</a>
+            <a className={st.link} href={youtube}>Youtube</a>
           </li>
         )}
-        {props.profile.contacts.github && (
+        {github && (
           <li>
-            <a className={st.link} href={props.profile.contacts.github}>Github</a>
+            <a className={st.link} href={github}>Github</a>
           </li>
         )}
-        {props.profile.contacts.mainLink && (
+        {mainLink && (
           <li>
-            <a className={st.link} href={props.profile.contacts.mainLink}>Main Link</a>
+            <a className={st.link} href={mainLink}>Main Link</a>
           </li>
         )}
       </ul>

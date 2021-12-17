@@ -23,18 +23,21 @@ class FindUsersContainer extends Component {
     super(props);
   }
   componentDidMount() {
-    this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+    const {currentPage, pageSize, requestUsers} = this.props;
+    requestUsers(currentPage, pageSize);
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.requestUsers(pageNumber, this.props.pageSize)
+    const {setCurrentPage, requestUsers, pageSize} = this.props;
+    setCurrentPage(pageNumber);
+    requestUsers(pageNumber, pageSize);
   };
 
   render() {
+    const {isFetching} = this.props;
     return (
       <>
-        {this.props.isFetching ? (
+        {isFetching ? (
           <Preloader />
         ) : (
           <FindUsers

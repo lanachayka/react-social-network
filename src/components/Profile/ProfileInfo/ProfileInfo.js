@@ -4,7 +4,6 @@ import Preloader from "../../common/Preloader/Preloader";
 import Status from "./Status/Status";
 
 export default function ProfileInfo({profile, updateProfileStatus, status}) {
-  const {facebook, website, vk, twitter, instagram, youtube, github, mainLink} = profile.contacts;
   if (!profile) {
     return <Preloader />;
   }
@@ -31,44 +30,44 @@ export default function ProfileInfo({profile, updateProfileStatus, status}) {
       </div>
       <ul>
         <h3>Contacts:</h3>
-        {facebook && (
+        {profile.contacts.facebook && (
           <li>
-            <a className={st.link} href={facebook}>Facebook</a>
+            <a className={st.link} href={profile.contacts.facebook}>Facebook</a>
           </li>
         )}
-        {website && (
+        {profile.contacts.website && (
           <li>
-            <a className={st.link} href={website}>Website</a>
+            <a className={st.link} href={profile.contacts.website}>Website</a>
           </li>
         )}
-        {vk && (
+        {profile.contacts.vk && (
           <li>
-            <a className={st.link} href={vk}>VK</a>
+            <a className={st.link} href={profile.contacts.vk}>VK</a>
           </li>
         )}
-        {twitter && (
+        {profile.contacts.twitter && (
           <li>
-            <a className={st.link} href={twitter}>Twitter</a>
+            <a className={st.link} href={profile.contacts.twitter}>Twitter</a>
           </li>
         )}
-        {instagram && (
+        {profile.contacts.instagram && (
           <li>
-            <a className={st.link} href={instagram}>Instagram</a>
+            <a className={st.link} href={profile.contacts.instagram}>Instagram</a>
           </li>
         )}
-        {youtube && (
+        {profile.contacts.youtube && (
           <li>
-            <a className={st.link} href={youtube}>Youtube</a>
+            <a className={st.link} href={profile.contacts.youtube}>Youtube</a>
           </li>
         )}
-        {github && (
+        {profile.contacts.github && (
           <li>
-            <a className={st.link} href={github}>Github</a>
+            <a className={st.link} href={profile.contacts.github}>Github</a>
           </li>
         )}
-        {mainLink && (
+        {profile.contacts.mainLink && (
           <li>
-            <a className={st.link} href={mainLink}>Main Link</a>
+            <a className={st.link} href={profile.contacts.mainLink}>Main Link</a>
           </li>
         )}
       </ul>

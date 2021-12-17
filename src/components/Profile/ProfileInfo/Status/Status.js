@@ -31,7 +31,7 @@ export default function Status(props) {
                     defaultValue={status}
                     onBlur={deactivateEditMode}
                     onChange={onStatusChange}
-                ></input>}
+                />}
         </>
     )
 }

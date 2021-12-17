@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import ProfileContainer from "./components/Profile/ProfileContainer";
@@ -10,10 +10,11 @@ import FindUsersContainer from "./components/FindUsers/FindUsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import React, { Component } from 'react'
-import { connect } from "react-redux";
+import {connect, Provider} from "react-redux";
 import { initializeApp } from "./redux/appReducer"
 import { compose } from "redux";
 import Preloader from "./components/common/Preloader/Preloader";
+import store from "./redux/reduxStore";
 
 class App extends Component {
   constructor(props) {
@@ -29,8 +30,6 @@ class App extends Component {
       return <Preloader />
     }
     return (
-      <div>
-        <BrowserRouter>
           <div className="app-wrapper">
             <HeaderContainer />
             <Navbar />
@@ -50,8 +49,6 @@ class App extends Component {
               <Route path="/login" render={() => <Login />} />
             </div>
           </div>
-        </BrowserRouter>
-      </div>
     )
   }
 }
@@ -62,4 +59,16 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default compose(connect(mapStateToProps, { initializeApp }))(App);
+const AppContainer = compose(connect(mapStateToProps, { initializeApp }))(App);
+
+const SocialNetworkApp = () => {
+  return (
+      <BrowserRouter>
+        <Provider store={store}>
+          <AppContainer />
+        </Provider>
+      </BrowserRouter>
+  )
+}
+
+export default SocialNetworkApp;

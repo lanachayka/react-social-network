@@ -3,9 +3,14 @@ import st from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import Status from "./Status/Status";
 
-export default function ProfileInfo({profile, updateProfileStatus, status}) {
+export default function ProfileInfo({profile, updateProfileStatus, status, isOwner, savePhoto}) {
   if (!profile) {
     return <Preloader />;
+  }
+  const onMainPhotoSelected = (e) => {
+    if (e.target.files.lenght) {
+      savePhoto(e.target.files[0]);
+    }
   }
   return (
     <div className={st.info}>
@@ -13,12 +18,13 @@ export default function ProfileInfo({profile, updateProfileStatus, status}) {
       <img
         className={st.avatar}
         src={
-          profile.photos.small
-            ? profile.photos.small
+          profile.photos.large
+            ? profile.photos.large
             : "https://st2.depositphotos.com/3873339/8013/i/600/depositphotos_80131050-stock-photo-realistic-square-picture-frame-on.jpg"
         }
         alt="Avatar"
-      />
+        />
+        {isOwner && <input type="file" onChange={onMainPhotoSelected}/>}
         <h1 className={st.title}>{profile.fullName}</h1>
         <p className={st.text}>{profile.aboutMe}</p>
         <p className={st.text}>

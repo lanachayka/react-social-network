@@ -10,6 +10,8 @@ export default function Profile(props) {
           profile={props.profile}
           status={props.status}
           updateProfileStatus={props.updateProfileStatus}
+          isOwner={props.isOwner}
+          savePhoto={props.savePhoto}
         />
         <MyPostsContainer />
       </div>

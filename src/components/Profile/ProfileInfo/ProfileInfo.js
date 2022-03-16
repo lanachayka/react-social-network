@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import st from "./ProfileInfo.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import Status from "./Status/Status";
+import ProfileDataForm from "./ProfileDataForm/ProfileDataForm";
 
-export default function ProfileInfo({profile, updateProfileStatus, status, isOwner, savePhoto}) {
+export default function ProfileInfo({profile, updateProfileStatus, status, isOwner, savePhoto, saveProfile}) {
+  
+  const [editMode, setEditMode] = useState(false);
+  
   if (!profile) {
     return <Preloader />;
   }
@@ -12,9 +16,14 @@ export default function ProfileInfo({profile, updateProfileStatus, status, isOwn
       savePhoto(e.target.files[0]);
     }
   }
+  const onSubmit = (formData) => {
+    saveProfile(formData).then(() => {
+      setEditMode(false);
+    });
+  }
   return (
-    <div className={st.info}>
-      <div className={st.description}>
+    <div>
+      <div>
       <img
         className={st.avatar}
         src={
@@ -24,59 +33,51 @@ export default function ProfileInfo({profile, updateProfileStatus, status, isOwn
         }
         alt="Avatar"
         />
-        {isOwner && <input type="file" onChange={onMainPhotoSelected}/>}
-        <h1 className={st.title}>{profile.fullName}</h1>
-        <p className={st.text}>{profile.aboutMe}</p>
-        <p className={st.text}>
-          <Status
+        {isOwner && <input type="file" onChange={onMainPhotoSelected} />}
+        {editMode
+          ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
+          : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => setEditMode(true)} />}
+        <Status
             updateProfileStatus={updateProfileStatus}
             status={status}
           />
-        </p>
       </div>
-      <ul>
-        <h3>Contacts:</h3>
-        {profile.contacts.facebook && (
-          <li>
-            <a className={st.link} href={profile.contacts.facebook}>Facebook</a>
-          </li>
-        )}
-        {profile.contacts.website && (
-          <li>
-            <a className={st.link} href={profile.contacts.website}>Website</a>
-          </li>
-        )}
-        {profile.contacts.vk && (
-          <li>
-            <a className={st.link} href={profile.contacts.vk}>VK</a>
-          </li>
-        )}
-        {profile.contacts.twitter && (
-          <li>
-            <a className={st.link} href={profile.contacts.twitter}>Twitter</a>
-          </li>
-        )}
-        {profile.contacts.instagram && (
-          <li>
-            <a className={st.link} href={profile.contacts.instagram}>Instagram</a>
-          </li>
-        )}
-        {profile.contacts.youtube && (
-          <li>
-            <a className={st.link} href={profile.contacts.youtube}>Youtube</a>
-          </li>
-        )}
-        {profile.contacts.github && (
-          <li>
-            <a className={st.link} href={profile.contacts.github}>Github</a>
-          </li>
-        )}
-        {profile.contacts.mainLink && (
-          <li>
-            <a className={st.link} href={profile.contacts.mainLink}>Main Link</a>
-          </li>
-        )}
-      </ul>
     </div>
   );
 }
+
+const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+  return (
+    <div>
+      {isOwner &&
+        <div><button onClick={goToEditMode}>Edit</button></div>}
+      <div>
+        <b>Full Name</b>: {profile.fullName}
+      </div>
+      <div>
+        <b>Looking for a job</b>: {profile.lookingForAJob ? 'yes' : 'no'}
+      </div>
+      {profile.lookingForAJob &&
+        <div>
+          <b>My professional skils</b>: {profile.lookingForAJobDescription}
+        </div>
+      }
+      <div>
+        <b>About me</b>: {profile.aboutMe}
+      </div>
+      <div>
+        <b>Contacts</b>: {Object.keys(profile.contacts).map(key => (
+          <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const Contact = ({ contactTitle, contactValue }) => {
+  return (
+    <div className={st.contact}>
+      <b>{contactTitle}</b>: {contactValue}
+    </div>)
+}
+

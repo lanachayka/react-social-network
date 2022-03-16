@@ -25,7 +25,7 @@ export default function Status(props) {
     return (
         <>
             {!editMode
-                ? <span onDoubleClick={activateEditMode}>{props.status || "----------"}</span>
+                ? <><b>Status</b>: <span onDoubleClick={activateEditMode}>{props.status || "----------"}</span></>
                 : <input
                     autoFocus={true}
                     defaultValue={status}

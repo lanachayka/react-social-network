@@ -1,14 +1,19 @@
-import {BrowserRouter, Route} from "react-router-dom";
-import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
-import HeaderContainer from "./components/Header/HeaderContainer";
 import React, { Component } from 'react'
-import {connect, Provider} from "react-redux";
-import { initializeApp } from "./redux/appReducer"
+import { BrowserRouter, Route, withRouter, Redirect, Switch } from "react-router-dom";
+
+// Redux
+import { connect, Provider } from "react-redux";
+import { initializeApp, setGlobalError } from "./redux/appReducer"
 import { compose } from "redux";
-import Preloader from "./components/common/Preloader/Preloader";
 import store from "./redux/reduxStore";
 
+//Styles
+import "./App.css";
+
+// Components
+import Navbar from "./components/Navbar/Navbar";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import Preloader from "./components/common/Preloader/Preloader";
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const Login = React.lazy(() => import('./components/Login/Login'));
@@ -18,12 +23,17 @@ const Settings = React.lazy(() => import('./components/Settings/Settings'));
 const FindUsersContainer = React.lazy(() => import('./components/FindUsers/FindUsersContainer'));
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  catchAllUnhandledErrors = (reason, promise) => {
+    this.props.setGlobalError(reason.message);
   }
 
   componentDidMount() {
     this.props.initializeApp();
+    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
   }
 
   render() {
@@ -31,46 +41,54 @@ class App extends Component {
       return <Preloader />
     }
     return (
-          <div className="app-wrapper">
-            <HeaderContainer />
-            <Navbar />
-            <div className="app-wrapper-content">
-                <React.Suspense fallback={Preloader}>
-                  <Route
-                    path="/profile/:userId?"
-                    render={() => <ProfileContainer/>}
-                  />
-                  <Route
-                    path="/dialogs"
-                    render={() => <DialogsContainer />}
-                  />
-                  <Route path="/news" render={() => <News />} />
-                  <Route path="/music" render={() => <Music />} />
-                  <Route path="/users" render={() => <FindUsersContainer />} />
-                  <Route path="/settings" render={() => <Settings />} />
-                  <Route path="/login" render={() => <Login />} />
-                </React.Suspense>
-            </div>
-          </div>
+      <div className="app-wrapper">
+        <HeaderContainer />
+        <Navbar />
+        <div className="app-wrapper-content">
+          <React.Suspense fallback={Preloader}>
+            <Switch>
+              <Route
+                exact path="/"
+                render={() => <Redirect to="/profile" />}
+              />
+              <Route
+                path="/profile/:userId?"
+                render={() => <ProfileContainer />}
+              />
+              <Route
+                path="/dialogs"
+                render={() => <DialogsContainer />}
+              />
+              <Route path="/news" render={() => <News />} />
+              <Route path="/music" render={() => <Music />} />
+              <Route path="/users" render={() => <FindUsersContainer />} />
+              <Route path="/settings" render={() => <Settings />} />
+              <Route path="/login" render={() => <Login />} />
+              <Route path="*" render={() => <div>404 NOT FOUND</div>} />
+            </Switch>
+          </React.Suspense>
+        </div>
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    initialized: state.app.initialized
+    initialized: state.app.initialized,
+    globalError: state.app.globalError
   }
 }
 
-const AppContainer = compose(connect(mapStateToProps, { initializeApp }))(App);
+const AppContainer = compose(withRouter, connect(mapStateToProps, { initializeApp, setGlobalError }))(App);
 
 const SocialNetworkApp = () => {
   return (
-      <BrowserRouter>
-        <Provider store={store}>
-          <AppContainer />
-        </Provider>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </BrowserRouter>
   )
 }
 

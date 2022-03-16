@@ -6,25 +6,27 @@
     margin-bottom: 40px;
 }
 
-.smallbtn {
+.pageNumber {
     width: 30px;
     height: 30px;
     background-color: var(--main-color);
     border: none;
     color: var(--active-color);
     margin-right: 10px;
+    text-align: center;
 }
 
-.smallbtnActive {
+.selectedPage {
     width: 30px;
     height: 30px;
     background-color: var(--accent-color);
     border: none;
     color: var(--active-color);
     margin-right: 10px;
+    text-align: center;
 }
 
-.smallbtn:hover {
+.pageNumber:hover {
     background-color: var(--accent-color);
     cursor: pointer;
 }

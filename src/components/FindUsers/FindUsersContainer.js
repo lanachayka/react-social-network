@@ -19,17 +19,13 @@ import {
 } from "../../redux/findUsersSelectors";
 
 class FindUsersContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     const {currentPage, pageSize, requestUsers} = this.props;
     requestUsers(currentPage, pageSize);
   }
 
   onPageChanged = (pageNumber) => {
-    const {setCurrentPage, requestUsers, pageSize} = this.props;
-    setCurrentPage(pageNumber);
+    const {requestUsers, pageSize} = this.props;
     requestUsers(pageNumber, pageSize);
   };
 

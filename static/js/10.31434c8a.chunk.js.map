@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/Settings/Settings.js"],"names":["Settings"],"mappings":"+HAAA,sEAGe,SAASA,IACtB,OAAO","file":"static/js/10.31434c8a.chunk.js","sourcesContent":["import React from 'react'\r\nimport st from \"./Settings.module.css\";\r\n\r\nexport default function Settings() {\r\n  return <div>Settings</div>;\r\n}\r\n"],"sourceRoot":""}

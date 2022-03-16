@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/News/News.js"],"names":["News"],"mappings":"8HAAA,sEAGe,SAASA,IACpB,OACI","file":"static/js/9.cc386ee5.chunk.js","sourcesContent":["import React from 'react'\r\nimport st from \"./News.module.css\";\r\n\r\nexport default function News() {\r\n    return (\r\n        <div>\r\n            News\r\n        </div>\r\n    )\r\n}\r\n"],"sourceRoot":""}

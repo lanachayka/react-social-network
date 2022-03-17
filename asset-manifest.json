@@ -3,8 +3,8 @@
     "static/js/0.5d80ce51.chunk.js": "/react-social-network/static/js/0.5d80ce51.chunk.js",
     "static/js/0.5d80ce51.chunk.js.map": "/react-social-network/static/js/0.5d80ce51.chunk.js.map",
     "main.css": "/react-social-network/static/css/main.e9815b4b.chunk.css",
-    "main.js": "/react-social-network/static/js/main.c7f53506.chunk.js",
-    "main.js.map": "/react-social-network/static/js/main.c7f53506.chunk.js.map",
+    "main.js": "/react-social-network/static/js/main.f623d4d8.chunk.js",
+    "main.js.map": "/react-social-network/static/js/main.f623d4d8.chunk.js.map",
     "runtime-main.js": "/react-social-network/static/js/runtime-main.9dfeb5b7.js",
     "runtime-main.js.map": "/react-social-network/static/js/runtime-main.9dfeb5b7.js.map",
     "static/js/3.8d067f6a.chunk.js": "/react-social-network/static/js/3.8d067f6a.chunk.js",
@@ -52,6 +52,6 @@
     "static/js/runtime-main.9dfeb5b7.js",
     "static/js/3.8d067f6a.chunk.js",
     "static/css/main.e9815b4b.chunk.css",
-    "static/js/main.c7f53506.chunk.js"
+    "static/js/main.f623d4d8.chunk.js"
   ]
 }

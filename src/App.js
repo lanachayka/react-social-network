@@ -3,7 +3,7 @@ import { BrowserRouter, Route, withRouter, Redirect, Switch } from "react-router
 
 // Redux
 import { connect, Provider } from "react-redux";
-import { initializeApp, setGlobalError } from "./redux/appReducer"
+import { initializeApp } from "./redux/appReducer"
 import { compose } from "redux";
 import store from "./redux/reduxStore";
 
@@ -24,7 +24,6 @@ const FindUsersContainer = React.lazy(() => import('./components/FindUsers/FindU
 
 class App extends Component {
   catchAllUnhandledErrors = (reason, promise) => {
-    this.props.setGlobalError(reason.message);
   }
 
   componentDidMount() {
@@ -64,7 +63,6 @@ class App extends Component {
               <Route path="/users" render={() => <FindUsersContainer />} />
               <Route path="/settings" render={() => <Settings />} />
               <Route path="/login" render={() => <Login />} />
-              <Route path="*" render={() => <div>404 NOT FOUND</div>} />
             </Switch>
           </React.Suspense>
         </div>
@@ -76,11 +74,10 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     initialized: state.app.initialized,
-    globalError: state.app.globalError
   }
 }
 
-const AppContainer = compose(withRouter, connect(mapStateToProps, { initializeApp, setGlobalError }))(App);
+const AppContainer = compose(withRouter, connect(mapStateToProps, { initializeApp }))(App);
 
 const SocialNetworkApp = () => {
   return (

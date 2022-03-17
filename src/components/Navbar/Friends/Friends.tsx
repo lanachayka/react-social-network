@@ -1,7 +1,12 @@
 import React from "react";
+import { FriendType } from "../../../types/types";
 import st from "./Friends.module.css";
 
-export default function Friends(props) {
+type PropsType = {
+  friends: FriendType[]
+}
+
+const Friends: React.FC<PropsType> = (props) => {
   return (
     <div>
       <h3 className={st.title}>FRIENDS</h3>
@@ -16,3 +21,5 @@ export default function Friends(props) {
     </div>
   );
 }
+
+export default Friends

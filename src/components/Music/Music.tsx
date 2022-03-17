@@ -1,10 +1,12 @@
 import React from 'react'
 import st from "./Music.module.css";
 
-export default function Music() {
+const Music: React.FC = () => {
     return (
         <div>
             Music
         </div>
     )
 }
+
+export default Music

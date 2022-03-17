@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ChangeEvent } from 'react'
 
-export default function Status(props) {
-    const [editMode, setEditMode] = useState(false);
-    const [status, setStatus] = useState(props.status);
+type PropsType = {
+    status: string,
+    updateProfileStatus: (status: string) => void
+}
+
+const Status: React.FC<PropsType> = (props) => {
+    const [editMode, setEditMode] = useState<boolean>(false);
+    const [status, setStatus] = useState<string>(props.status);
 
     const activateEditMode = () => {
         setEditMode(true);
@@ -14,7 +19,7 @@ export default function Status(props) {
         props.updateProfileStatus(status);
     }
 
-    const onStatusChange = (event) => {
+    const onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
         setStatus(event.target.value);
     };
 
@@ -35,3 +40,5 @@ export default function Status(props) {
         </>
     )
 }
+
+export default Status

@@ -2,13 +2,24 @@ import React from "react";
 import Dialog from "./Dialog/Dialog";
 import st from "./Dialogs.module.css";
 import Message from "./Message/Message";
-import { Field, reduxForm } from 'redux-form'
+import { Field, InjectedFormProps, reduxForm } from 'redux-form'
 import { maxLength, requiredField } from "../../utils/validators/validators";
 import { TextArea } from "../common/FormsControls/FormsControls";
+import {DialogType, MessageType } from '../../types/types'
 
-export default function Dialogs(props) {
+type DialogsPropsType = {
+  dialogsData: DialogType[],
+  messagesData: MessageType[],
+  sendMessage: (newMessage: string) => void
+}
 
-  const onSubmit = (formData) => {
+type FormDataType = {
+  newMessage: string
+}
+
+const Dialogs: React.FC<DialogsPropsType> = (props) => {
+
+  const onSubmit: any = (formData: FormDataType) => {
     props.sendMessage(formData.newMessage);
   }
 
@@ -36,7 +47,7 @@ export default function Dialogs(props) {
 
 const maxLength50 = maxLength(50);
 
-const MessageForm = (props) => {
+const MessageForm: React.FC<InjectedFormProps> = (props) => {
   return (
     <form className={st.add} onSubmit={props.handleSubmit}>
       <Field
@@ -54,3 +65,5 @@ const MessageForm = (props) => {
 }
 
 const MessageReduxForm = reduxForm({ form: "message" })(MessageForm);
+
+export default Dialogs;

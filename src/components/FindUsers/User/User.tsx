@@ -2,8 +2,16 @@ import React from "react";
 import st from "./User.module.css";
 import userPhoto from "../../../assets/img/user.jpg";
 import { NavLink } from "react-router-dom";
+import { UserType } from "../../../types/types";
 
-export default function User({followingInProgress, follow, unfollow, user}) {
+type PropsType = {
+  followingInProgress: number[],
+  follow: (userId: number) => void,
+  unfollow: (userId: number) => void,
+  user: UserType
+}
+
+const User: React.FC<PropsType> = ({followingInProgress, follow, unfollow, user}) => {
   return (
         <div className={st.user}>
           <div className={st.container}>
@@ -36,3 +44,5 @@ export default function User({followingInProgress, follow, unfollow, user}) {
           </div>
         </div>)
 };
+
+export default User;

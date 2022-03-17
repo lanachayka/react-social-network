@@ -1,8 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
+import { AppStateType } from "../../../redux/reduxStore";
+import { FriendType } from "../../../types/types";
 import Friends from "./Friends";
 
-const mapStateToProps = (state) => {
+type MapStatePropsType = {
+  friends: FriendType[] 
+}
+
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     friends: state.navbar.friends
   };

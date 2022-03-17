@@ -24,10 +24,8 @@ export type PostType = {
 }
 
 export type PhotosType = {
-    photos: {
-        small: string | null,
-        large: string | null
-    }
+    small: string | null,
+    large: string | null
 }
 
 export type ProfileType = {
@@ -45,4 +43,10 @@ export type ProfileType = {
         youtube: string,
         mainLink: string
     },
+}
+
+export type FriendType = {
+    id: number,
+    name: string,
+    photo: string
 }

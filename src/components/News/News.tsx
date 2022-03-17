@@ -1,10 +1,12 @@
 import React from 'react'
 import st from "./News.module.css";
 
-export default function News() {
+const News: React.FC = () => {
     return (
         <div>
             News
         </div>
     )
 }
+
+export default News

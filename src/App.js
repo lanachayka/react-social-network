@@ -60,7 +60,7 @@ class App extends Component {
               />
               <Route path="/news" render={() => <News />} />
               <Route path="/music" render={() => <Music />} />
-              <Route path="/users" render={() => <FindUsersContainer />} />
+              <Route path="/users" render={() => <FindUsersContainer pageTitle="React Social Network Users"/>} />
               <Route path="/settings" render={() => <Settings />} />
               <Route path="/login" render={() => <Login />} />
             </Switch>

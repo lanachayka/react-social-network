@@ -4,7 +4,7 @@ import FriendsContainer from "./Friends/FriendsContainer";
 import st from "./Navbar.module.css";
 import search from "./search_white.svg";
 
-export default function Navbar(props) {
+const Navbar: React.FC = () => {
   return (
     <nav className={st.nav}>
       <NavLink to="/profile" activeClassName={st.active} className={st.item}>
@@ -33,3 +33,5 @@ export default function Navbar(props) {
     </nav>
   );
 }
+
+export default Navbar

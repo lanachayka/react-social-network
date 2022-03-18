@@ -2,9 +2,8 @@ import { GetStateType } from './../types/types';
 import { ThunkAction } from 'redux-thunk';
 import { AppStateType } from './reduxStore';
 import { profileAPI } from "../api/api";
-import { FormAction, stopSubmit } from "redux-form";
+import { stopSubmit } from "redux-form";
 import { PostType, PhotosType, ProfileType } from "../types/types";
-import { Dispatch } from 'redux';
 
 const ADD_POST = "profile/ADD_POST";
 const DELETE_POST = "profile/DELETE_POST";
@@ -111,7 +110,7 @@ export const updateProfileStatus = (status: string): ThunkType => async (dispatc
   }
 }
 
-export const savePhoto = (file: any): ThunkType => async (dispatch) => {
+export const savePhoto = (file: File): ThunkType => async (dispatch) => {
   const data: any = await profileAPI.savePhoto(file);
   if (data.resultCode === 0) {
     dispatch(savePhotoSuccess(data.data.photos));

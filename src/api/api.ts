@@ -49,26 +49,7 @@ export const userAPI = {
     },
 }
 
-type GetProfileInfoResponseType = {
-    userId: number
-    lookingForAJob: boolean,
-    lookingForAJobDescription: string,
-    fullName: string,
-    contacts: {
-        github: string,
-        vk: string,
-        facebook: string,
-        instagram: string,
-        twitter: string,
-        website: string,
-        youtube: string,
-        mainLink: string
-    },
-    photos: {
-        small: string,
-        large: string
-    }
-}
+type GetProfileInfoResponseType = ProfileType
 
 type GetStatusResponseType = string
 
@@ -103,7 +84,7 @@ export const profileAPI = {
         return instance.put <UpdateStatusRequestType, AxiosResponse<UpdateStatusResponseType>>(`profile/status`, { status: status })
         .then(response => response.data);
     },
-    savePhoto(photoFile: any) {
+    savePhoto(photoFile: File) {
         const formData = new FormData();
         formData.append('image', photoFile);
         return instance.put(`profile/photo`, formData, {

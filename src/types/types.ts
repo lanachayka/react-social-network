@@ -1,3 +1,4 @@
+import { AppStateType } from './../redux/reduxStore';
 export type UserType = {
     id: number,
     name: string,
@@ -50,3 +51,5 @@ export type FriendType = {
     name: string,
     photo: string
 }
+
+export type GetStateType = () => AppStateType;

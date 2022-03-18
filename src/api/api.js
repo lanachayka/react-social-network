@@ -33,7 +33,8 @@ export const profileAPI = {
         .then(response => response.data);
     },
     updateStatus(status) {
-        return instance.put(`profile/status`, { status:status})
+        return instance.put(`profile/status`, { status: status })
+        .then(response => response.data);
     },
     savePhoto(photoFile) {
         const formData = new FormData();

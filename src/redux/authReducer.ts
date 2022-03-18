@@ -34,7 +34,7 @@ const authReducer = (state = initialState, action: ActionType): InitialStateType
 type setAuthUserDataActionType = {
     type: typeof SET_AUTH_USER_DATA,
     payload: {
-        userId: number | null,
+        id: number | null,
         email: string | null,
         login: string | null,
         isAuth: boolean
@@ -44,7 +44,7 @@ type setAuthUserDataActionType = {
 export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): setAuthUserDataActionType => ({
     type: SET_AUTH_USER_DATA,
     payload: {
-        userId: userId, email: email, login: login, isAuth: isAuth
+        id: userId, email: email, login: login, isAuth: isAuth
     }
 });
 

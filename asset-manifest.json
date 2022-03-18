@@ -3,15 +3,15 @@
     "static/js/0.5d80ce51.chunk.js": "/react-social-network/static/js/0.5d80ce51.chunk.js",
     "static/js/0.5d80ce51.chunk.js.map": "/react-social-network/static/js/0.5d80ce51.chunk.js.map",
     "main.css": "/react-social-network/static/css/main.e9815b4b.chunk.css",
-    "main.js": "/react-social-network/static/js/main.55d03074.chunk.js",
-    "main.js.map": "/react-social-network/static/js/main.55d03074.chunk.js.map",
-    "runtime-main.js": "/react-social-network/static/js/runtime-main.480383c8.js",
-    "runtime-main.js.map": "/react-social-network/static/js/runtime-main.480383c8.js.map",
+    "main.js": "/react-social-network/static/js/main.2833a615.chunk.js",
+    "main.js.map": "/react-social-network/static/js/main.2833a615.chunk.js.map",
+    "runtime-main.js": "/react-social-network/static/js/runtime-main.f69703d4.js",
+    "runtime-main.js.map": "/react-social-network/static/js/runtime-main.f69703d4.js.map",
     "static/js/3.8de697fa.chunk.js": "/react-social-network/static/js/3.8de697fa.chunk.js",
     "static/js/3.8de697fa.chunk.js.map": "/react-social-network/static/js/3.8de697fa.chunk.js.map",
     "static/css/4.97923908.chunk.css": "/react-social-network/static/css/4.97923908.chunk.css",
-    "static/js/4.66a87a41.chunk.js": "/react-social-network/static/js/4.66a87a41.chunk.js",
-    "static/js/4.66a87a41.chunk.js.map": "/react-social-network/static/js/4.66a87a41.chunk.js.map",
+    "static/js/4.eb3b6b73.chunk.js": "/react-social-network/static/js/4.eb3b6b73.chunk.js",
+    "static/js/4.eb3b6b73.chunk.js.map": "/react-social-network/static/js/4.eb3b6b73.chunk.js.map",
     "static/css/5.a8dfcec5.chunk.css": "/react-social-network/static/css/5.a8dfcec5.chunk.css",
     "static/js/5.b46a59cf.chunk.js": "/react-social-network/static/js/5.b46a59cf.chunk.js",
     "static/js/5.b46a59cf.chunk.js.map": "/react-social-network/static/js/5.b46a59cf.chunk.js.map",
@@ -43,9 +43,9 @@
     "static/media/user.181d3cde.jpg": "/react-social-network/static/media/user.181d3cde.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.480383c8.js",
+    "static/js/runtime-main.f69703d4.js",
     "static/js/3.8de697fa.chunk.js",
     "static/css/main.e9815b4b.chunk.css",
-    "static/js/main.55d03074.chunk.js"
+    "static/js/main.2833a615.chunk.js"
   ]
 }

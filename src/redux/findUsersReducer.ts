@@ -1,3 +1,4 @@
+import { ResultCodes } from './../api/api';
 import { AppStateType } from './reduxStore';
 import { UserType } from '../types/types';
 import { userAPI } from '../api/api'
@@ -129,18 +130,12 @@ export const setFollowingProgress = (isFollowing: boolean, userId: number): SetF
   userId: userId
 });
 
-type RequestUsersData = {
-  items: UserType[],
-  totalCount: number,
-  error: string | null
-}
-
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionType>
 
 export const requestUsers = (page: number, pageSize: number): ThunkType => async (dispatch) => {
   dispatch(setIsFetching(true));
   dispatch(setCurrentPage(page));
-  const data: RequestUsersData = await userAPI.getUsers(page, pageSize);
+  const data = await userAPI.getUsers(page, pageSize);
     dispatch(setIsFetching(false));
     dispatch(setUsers(data.items));
     dispatch(setTotalUsersCount(data.totalCount));
@@ -149,7 +144,7 @@ export const requestUsers = (page: number, pageSize: number): ThunkType => async
 const _followUnfollowFlow = async (dispatch: Dispatch<ActionType>, apiMethod: any, userId: number, actionCreator: (userId: number) => FollowSuccessActionType | UnfollowSuccessActionType)  => {
   dispatch(setFollowingProgress(true, userId));
   const data = await apiMethod(userId);
-  if (data.resultCode === 0) {
+  if (data.resultCode === ResultCodes.Succsess) {
     dispatch(actionCreator(userId));
   }
   dispatch(setFollowingProgress(false, userId));

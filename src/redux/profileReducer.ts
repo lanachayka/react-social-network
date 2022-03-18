@@ -105,27 +105,27 @@ export const getProfileStatus = (userId: number): ThunkType => async (dispatch) 
 }
 
 export const updateProfileStatus = (status: string): ThunkType => async (dispatch) => {
-  const response: any = await profileAPI.updateStatus(status)
-  if (response.resultCode === 0) {
+  const data = await profileAPI.updateStatus(status)
+  if (data.resultCode === 0) {
     dispatch(setProfileStatus(status));
   }
 }
 
 export const savePhoto = (file: any): ThunkType => async (dispatch) => {
-  const response: any = await profileAPI.savePhoto(file);
-  if (response.data.resultCode === 0) {
-    dispatch(savePhotoSuccess(response.data.data.photos));
+  const data: any = await profileAPI.savePhoto(file);
+  if (data.resultCode === 0) {
+    dispatch(savePhotoSuccess(data.data.photos));
   }
 }
 
 export const saveProfile = (profile: ProfileType) => async (dispatch: any, getState: GetStateType) => {
   const userId = getState().auth.id;
-  const response = await profileAPI.saveProfile(profile);
-  if (response.data.resultCode === 0) {
+  const data = await profileAPI.saveProfile(profile);
+  if (data.resultCode === 0) {
     dispatch(getProfileInfo(userId));
   } else {
-    dispatch(stopSubmit("edit-profile", { _error: response.data.messages[0] }));
-    return Promise.reject(response.data.messages[0]);
+    dispatch(stopSubmit("edit-profile", { _error: data.messages[0] }));
+    return Promise.reject(data.messages[0]);
   }
 }
 

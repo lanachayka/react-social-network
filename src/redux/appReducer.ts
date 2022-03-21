@@ -1,5 +1,5 @@
 import { InferActionsTypes } from './reduxStore';
-import { getAuth } from "./authReducer";
+import { getAuth } from './authReducer';
 
 const initialState = {
     initialized: false,

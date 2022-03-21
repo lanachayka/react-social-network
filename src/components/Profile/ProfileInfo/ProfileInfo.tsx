@@ -30,14 +30,15 @@ const ProfileInfo: React.FC<PropsType> = ({profile, updateProfileStatus, status,
     await saveProfile(formData)
     setEditMode(false);
   }
+  const photo = profile.photos.large || profile.photos.small
   return (
     <div>
       <div>
       <img
         className={st.avatar}
         src={
-          profile.photos.large
-            ? profile.photos.large
+          photo
+            ? photo 
             : "https://st2.depositphotos.com/3873339/8013/i/600/depositphotos_80131050-stock-photo-realistic-square-picture-frame-on.jpg"
         }
         alt="Avatar"

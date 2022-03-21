@@ -1,8 +1,8 @@
 import { ResultCodes, ResultCodeForCaptcha } from './../api/api';
-import { ThunkAction } from 'redux-thunk';
-import { AppStateType, InferActionsTypes } from './reduxStore';
+import { InferActionsTypes, ThunkType } from './reduxStore';
 import { stopSubmit } from "redux-form";
-import { authAPI, securityAPI } from "../api/api";
+import { securityAPI } from "../api/security-api";
+import { authAPI } from '../api/auth-api';
 
 const initialState = {
     id: null as number | null,
@@ -43,9 +43,7 @@ const authReducer = (state = initialState, action: ActionsTypes): InitialStateTy
     }
 }
 
-export type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
-
-export const getAuth = (): ThunkType => async (dispatch) => {
+export const getAuth = (): ThunkType<ActionsTypes> => async (dispatch) => {
     const meData = await authAPI.me()
     if (meData.resultCode === ResultCodes.Succsess) {
         const { id, email, login } = meData.data
@@ -53,7 +51,7 @@ export const getAuth = (): ThunkType => async (dispatch) => {
     }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean, captcha: null | string) => async (dispatch: any) => {
+export const login = (email: string, password: string, rememberMe: boolean, captcha: null | string): ThunkType<ActionsTypes | ReturnType<typeof stopSubmit>> => async (dispatch) => {
     const loginData = await authAPI.login(email, password, rememberMe, captcha)
     if (loginData.resultCode === ResultCodes.Succsess) {
         dispatch(getAuth());
@@ -66,12 +64,12 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
     }
 }
 
-export const getCaptchaUrl = (): ThunkType => async (dispatch) => {
+export const getCaptchaUrl = (): ThunkType<ActionsTypes> => async (dispatch) => {
     const data = await securityAPI.getCaptchaUrl()
     dispatch(actions.getCaptchaUrlSuccess(data.url));
 }
 
-export const logout = (): ThunkType => async (dispatch) => {
+export const logout = (): ThunkType<ActionsTypes> => async (dispatch) => {
     const logoutData = await authAPI.logout()
     if (logoutData.resultCode === ResultCodes.Succsess) {
         dispatch(actions.setAuthUserData(null, null, null, false));

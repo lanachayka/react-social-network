@@ -1,12 +1,7 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
 import FindUsers from "./FindUsers";
-import {
-  follow,
-  unfollow,
-  setCurrentPage,
-  requestUsers,
-} from "../../redux/findUsersReducer";
+import {actions, follow, unfollow, requestUsers} from "../../redux/findUsersReducer";
 import Preloader from "../common/Preloader/Preloader";
 import { compose } from "redux";
 import {
@@ -86,7 +81,7 @@ export default compose(connect<MapStatePropsType, MapDispatchPropsType, OwnProps
   mapStateToProps, {
   follow,
   unfollow,
-  setCurrentPage,
+  setCurrentPage: actions.setCurrentPage,
   requestUsers
 })
 )(FindUsersContainer)

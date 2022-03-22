@@ -1,12 +1,15 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
+// Redux
 import { connect } from 'react-redux'
+import { login, logout } from '../../redux/authReducer'
+import { AppStateType } from '../../redux/reduxStore'
+// Redux Form
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { requiredField } from '../../utils/validators/validators'
-import {createField, Input, GetStringKeys} from '../common/FormsControls/FormsControls'
+import { createField, Input, GetStringKeys } from '../common/FormsControls/FormsControls'
+// Styles
 import st from './Login.module.css'
-import { login, logout } from '../../redux/authReducer'
-import { Redirect } from 'react-router-dom'
-import { AppStateType } from '../../redux/reduxStore'
 
 type MapStatePropsType = {
     isAuth: boolean,

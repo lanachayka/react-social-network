@@ -1,5 +1,4 @@
 import React from 'react'
-import st from "./News.module.css";
 
 const News: React.FC = () => {
     return (

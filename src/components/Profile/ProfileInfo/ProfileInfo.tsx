@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import st from "./ProfileInfo.module.css";
-import Preloader from "../../common/Preloader/Preloader";
-import Status from "./Status/Status";
-import ProfileDataForm from "./ProfileDataForm/ProfileDataForm";
-import { ProfileType, ContactsType } from "../../../types/types";
+import React, { useState } from 'react'
+// Components
+import Preloader from '../../common/Preloader/Preloader'
+import Status from './Status/Status'
+import ProfileDataForm from './ProfileDataForm/ProfileDataForm'
+// Styles
+import st from './ProfileInfo.module.css'
+// Types
+import { ProfileType, ContactsType } from '../../../types/types'
 
 type PropsType = {
   profile: ProfileType | null,

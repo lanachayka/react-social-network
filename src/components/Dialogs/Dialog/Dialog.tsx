@@ -1,6 +1,6 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import st from "./Dialog.module.css";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import st from './Dialog.module.css'
 
 type ProsType = {
   id: number

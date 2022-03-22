@@ -1,7 +1,7 @@
 import React from 'react'
-import logo from "./logo.svg";
-import st from "./Header.module.css";
-import { NavLink } from 'react-router-dom';
+import logo from './logo.svg'
+import st from './Header.module.css'
+import { NavLink } from 'react-router-dom'
 
 type PropsType = {
   isAuth: boolean,

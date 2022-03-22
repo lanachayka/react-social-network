@@ -1,8 +1,8 @@
-import React from "react";
-import st from "./User.module.css";
-import userPhoto from "../../../assets/img/user.jpg";
-import { NavLink } from "react-router-dom";
-import { UserType } from "../../../types/types";
+import React from 'react'
+import st from './User.module.css'
+import userPhoto from '../../../assets/img/user.jpg'
+import { NavLink } from 'react-router-dom'
+import { UserType } from '../../../types/types'
 
 type PropsType = {
   followingInProgress: number[],

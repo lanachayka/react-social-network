@@ -1,5 +1,5 @@
 import { ResultCodes } from './../api/api';
-import { AppStateType, InferActionsTypes, ThunkType } from './reduxStore';
+import { InferActionsTypes, ThunkType } from './reduxStore';
 import { UserType } from '../types/types';
 import { userAPI } from '../api/users-api';
 import { updateObjectInArray } from '../utils/object-helpers';

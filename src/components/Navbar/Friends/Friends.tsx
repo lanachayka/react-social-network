@@ -1,6 +1,6 @@
-import React from "react";
-import { FriendType } from "../../../types/types";
-import st from "./Friends.module.css";
+import React from 'react'
+import { FriendType } from '../../../types/types'
+import st from './Friends.module.css'
 
 type PropsType = {
   friends: FriendType[]

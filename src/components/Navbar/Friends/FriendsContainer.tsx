@@ -1,8 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import { AppStateType } from "../../../redux/reduxStore";
-import { FriendType } from "../../../types/types";
-import Friends from "./Friends";
+import { connect } from 'react-redux'
+import { AppStateType } from '../../../redux/reduxStore'
+import { FriendType } from '../../../types/types'
+import Friends from './Friends'
 
 type MapStatePropsType = {
   friends: FriendType[] 

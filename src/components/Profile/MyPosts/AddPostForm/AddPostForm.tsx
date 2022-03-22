@@ -1,7 +1,7 @@
-import React from 'react';
-import { InjectedFormProps, reduxForm } from "redux-form";
-import { requiredField } from '../../../../utils/validators/validators';
-import { createField, GetStringKeys, Input } from '../../../common/FormsControls/FormsControls';
+import React from 'react'
+import { InjectedFormProps, reduxForm } from 'redux-form'
+import { requiredField } from '../../../../utils/validators/validators'
+import { createField, GetStringKeys, Input } from '../../../common/FormsControls/FormsControls'
 
 type PropsType = {
 

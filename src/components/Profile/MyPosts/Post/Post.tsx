@@ -1,5 +1,5 @@
-import React from "react";
-import st from "./Post.module.css";
+import React from 'react'
+import st from './Post.module.css'
 
 type PropsType = {
   message: string,

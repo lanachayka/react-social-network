@@ -1,0 +1,22 @@
+.add {
+  display: flex;
+  flex-direction: column;
+}
+
+.textArea {
+  max-width: 300px;
+}
+
+.btn {
+  margin-top: 15px;
+  width: 100px;
+  height: 40px;
+  background-color: var(--main-color);
+  border: none;
+  color: var(--active-color);
+}
+
+.btn:hover {
+  background-color: var(--accent-color);
+  cursor: pointer;
+}

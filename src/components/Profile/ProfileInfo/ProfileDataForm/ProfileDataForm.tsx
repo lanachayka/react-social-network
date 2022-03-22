@@ -1,8 +1,8 @@
-import { reduxForm, InjectedFormProps } from "redux-form";
-import { createField, Input, TextArea } from "../../../common/FormsControls/FormsControls";
-import st from "../ProfileInfo.module.css";
+import { reduxForm, InjectedFormProps } from 'redux-form'
+import { createField, Input, TextArea } from '../../../common/FormsControls/FormsControls'
+import st from '../ProfileInfo.module.css'
 import style from '../../../common/FormsControls/FormsControls.module.css'
-import { ProfileType } from "../../../../types/types";
+import { ProfileType } from '../../../../types/types'
 import { GetStringKeys } from '../../../common/FormsControls/FormsControls'
 
 type PropsType = {

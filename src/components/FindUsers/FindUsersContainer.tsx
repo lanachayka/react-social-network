@@ -1,9 +1,11 @@
-import { connect } from "react-redux";
-import React, { Component } from "react";
-import FindUsers from "./FindUsers";
-import {actions, follow, unfollow, requestUsers} from "../../redux/findUsersReducer";
-import Preloader from "../common/Preloader/Preloader";
-import { compose } from "redux";
+import { Component } from 'react'
+// Components
+import FindUsers from './FindUsers'
+import Preloader from '../common/Preloader/Preloader'
+// Redux
+import { connect } from 'react-redux'
+import {actions, follow, unfollow, requestUsers} from '../../redux/findUsersReducer'
+import { compose } from 'redux'
 import {
   getUsers,
   getCurrentPage,
@@ -11,9 +13,10 @@ import {
   getIsFetching,
   getPageSize,
   getTotalUsersCount
-} from "../../redux/findUsersSelectors";
-import { UserType } from "../../types/types";
-import { AppStateType } from "../../redux/reduxStore";
+} from '../../redux/findUsersSelectors'
+import { AppStateType } from '../../redux/reduxStore'
+// Types 
+import { UserType } from '../../types/types'
 
 type MapStatePropsType = {
   users: UserType[],

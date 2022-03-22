@@ -1,7 +1,7 @@
-import { actions } from "../../../redux/profileReducer";
-import MyPosts from "./MyPosts";
-import { connect } from "react-redux";
-import { AppStateType } from "../../../redux/reduxStore";
+import { actions } from '../../../redux/profileReducer'
+import MyPosts from './MyPosts'
+import { connect } from 'react-redux'
+import { AppStateType } from '../../../redux/reduxStore'
 
 const mapStateToProps = (state: AppStateType) => {
   return {

@@ -1,9 +1,12 @@
-import { actions } from "../../redux/messagesReducer";
-import Dialogs from "./Dialogs";
-import { connect } from "react-redux";
-import withAuthRedirect from "../../hoc/withAuthRedirect";
-import { compose } from "redux";
-import { AppStateType } from "../../redux/reduxStore";
+//Components
+import Dialogs from './Dialogs';
+// redux
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { AppStateType } from '../../redux/reduxStore';
+import { actions } from '../../redux/messagesReducer';
+// HOC
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 
 const mapStateToProps = (state: AppStateType) => {
   return {

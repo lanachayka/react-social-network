@@ -1,8 +1,7 @@
 import React from 'react'
-import st from "./Profile.module.css";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import ProfileInfo from './ProfileInfo/ProfileInfo';
-import { ProfileType } from '../../types/types';
+import MyPostsContainer from './MyPosts/MyPostsContainer'
+import ProfileInfo from './ProfileInfo/ProfileInfo'
+import { ProfileType } from '../../types/types'
 
 type PropsType = {
   profile: ProfileType | null,

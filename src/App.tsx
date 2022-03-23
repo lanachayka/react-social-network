@@ -7,8 +7,6 @@ import { compose } from 'redux';
 import store, { AppStateType } from './redux/reduxStore'
 //Styles
 import './App.css'
-// HOC
-import { withSuspense } from './hoc/withSuspense'
 // Components
 import Navbar from './components/Navbar/Navbar'
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -20,9 +18,6 @@ const News = React.lazy(() => import('./components/News/News'))
 const Music = React.lazy(() => import('./components/Music/Music'))
 const Settings = React.lazy(() => import('./components/Settings/Settings'))
 const FindUsersContainer = React.lazy(() => import('./components/FindUsers/FindUsersContainer'))
-const SuspendedDialogs = withSuspense(DialogsContainer)
-const SuspendedProfile = withSuspense(ProfileContainer)
-
 
 type PropsType = {
   initialized: boolean,
@@ -59,11 +54,11 @@ class App extends Component<PropsType> {
               />
               <Route
                 path="/profile/:userId?"
-                render={() => <SuspendedProfile />}
+                render={() => <ProfileContainer />}
               />
               <Route
                 path="/dialogs"
-                render={() => <SuspendedDialogs />}
+                render={() => <DialogsContainer />}
               />
               <Route path="/news" render={() => <News />} />
               <Route path="/music" render={() => <Music />} />

@@ -1,7 +1,9 @@
-import React from 'react';
-import { UserType } from '../../types/types';
-import Pagination from '../common/Pagination/Pagination';
-import User from './User/User';
+import React from 'react'
+import { FilterType } from '../../redux/findUsersReducer'
+import { UserType } from '../../types/types'
+import Pagination from '../common/Pagination/Pagination'
+import User from './User/User'
+import UserSearchForm from './UsersSeacrhForm/UsersSearchForm'
 
 type PropsType = {
   totalUsersCount: number,
@@ -11,12 +13,14 @@ type PropsType = {
   users: UserType[],
   followingInProgress: number[],
   follow: (userId: number) => void,
-  unfollow: (userId: number) => void
+  unfollow: (userId: number) => void,
+  onFilterChanged: (filter: FilterType) => void
 }
 
 const FindUsers: React.FC<PropsType> = (props) => {
   return (
     <div>
+      <UserSearchForm onFilterChanged={props.onFilterChanged}/>
       <Pagination
           totalItemsCount={props.totalUsersCount}
           pageSize={props.pageSize}
@@ -29,7 +33,8 @@ const FindUsers: React.FC<PropsType> = (props) => {
             user={user}
             followingInProgress={props.followingInProgress}
             follow={props.follow}
-            unfollow={props.unfollow}/>
+            unfollow={props.unfollow}
+        />
       ))}
     </div>
   );

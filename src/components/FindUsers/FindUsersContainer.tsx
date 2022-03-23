@@ -4,7 +4,7 @@ import FindUsers from './FindUsers'
 import Preloader from '../common/Preloader/Preloader'
 // Redux
 import { connect } from 'react-redux'
-import {actions, follow, unfollow, requestUsers} from '../../redux/findUsersReducer'
+import {actions, follow, unfollow, requestUsers, FilterType} from '../../redux/findUsersReducer'
 import { compose } from 'redux'
 import {
   getUsers,
@@ -12,7 +12,8 @@ import {
   getFollowingInProgress,
   getIsFetching,
   getPageSize,
-  getTotalUsersCount
+  getTotalUsersCount,
+  getFindUsersFilter
 } from '../../redux/findUsersSelectors'
 import { AppStateType } from '../../redux/reduxStore'
 // Types 
@@ -25,13 +26,14 @@ type MapStatePropsType = {
   currentPage: number,
   isFetching: boolean,
   followingInProgress: number[],
+  filter: FilterType
 }
 
 type MapDispatchPropsType = {
   follow: (userId: number) => void,
   unfollow: (userId: number) => void,
   setCurrentPage: (pageNumber: number) => void,
-  requestUsers: (currentPage: number, pageSize: number) => void
+  requestUsers: (currentPage: number, pageSize: number, filter: FilterType) => void
 }
 
 type OwnPropsType = {
@@ -42,17 +44,22 @@ type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
 
 class FindUsersContainer extends Component<PropsType> {
   componentDidMount() {
-    const {currentPage, pageSize, requestUsers} = this.props;
-    requestUsers(currentPage, pageSize);
+    const { currentPage, pageSize, requestUsers, filter} = this.props
+    requestUsers(currentPage, pageSize, filter)
   }
 
   onPageChanged = (pageNumber: number) => {
-    const {requestUsers, pageSize} = this.props;
-    requestUsers(pageNumber, pageSize);
-  };
+    const {requestUsers, pageSize, filter} = this.props
+    requestUsers(pageNumber, pageSize, filter)
+  }
+
+  onFilterChanged = (filter: FilterType) => {
+    const { pageSize, requestUsers } = this.props
+    requestUsers(1, pageSize, filter)
+  }
 
   render() {
-    const {isFetching, pageTitle} = this.props;
+    const {isFetching, pageTitle} = this.props
     return (
       <>
         <h2>{pageTitle}</h2>
@@ -60,12 +67,13 @@ class FindUsersContainer extends Component<PropsType> {
           <Preloader />
         ) : (
           <FindUsers
-            onPageChanged={this.onPageChanged}
+              onPageChanged={this.onPageChanged}
+              onFilterChanged={this.onFilterChanged}
             {...this.props}
           />
         )}
       </>
-    );
+    )
   }
 }
 
@@ -77,8 +85,9 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     currentPage: getCurrentPage(state),
     isFetching: getIsFetching(state),
     followingInProgress: getFollowingInProgress(state),
-  };
-};
+    filter: getFindUsersFilter(state)
+  }
+}
 
 export default compose(connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(
   mapStateToProps, {

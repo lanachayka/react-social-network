@@ -42,11 +42,11 @@ export const actions = {
   } as const),
 }
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 type ActionsTypes = InferActionsTypes<typeof actions>;
 
-const findUsersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
+export const findUsersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   switch (action.type) {
     case 'findUsers/FOLLOW_SUCCESS': {
       return {

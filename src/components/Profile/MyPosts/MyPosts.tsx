@@ -1,24 +1,24 @@
 import React from 'react'
-import { PostType } from '../../../types/types';
-import AddPostForm from './AddPostForm/AddPostForm';
-import st from './MyPosts.module.css';
-import Post from './Post/Post';
-
-export type MapPropsType = {
-  postsData: PostType[]
-}
-export type DispatchPropsType = {
-  addPost: (newPost: string) => void
-}
+// Components
+import Post from './Post/Post'
+import AddPostForm from './AddPostForm/AddPostForm'
+// Redux
+import { useDispatch, useSelector } from 'react-redux'
+import { getPostsData } from '../../../redux/selectors/profileSelectors'
+import {actions} from '../../../redux/profileReducer'
+// Styles
+import st from './MyPosts.module.css'
 
 type MyPostsFormValuesType = {
   newPost: string,
 }
 
-const MyPosts: React.FC<MapPropsType & DispatchPropsType> = (props) => {
+const MyPosts: React.FC = () => {
+  const postsData = useSelector(getPostsData)
+  const dispatch = useDispatch()
 
   const onAddPost = (formData: MyPostsFormValuesType) => {
-    props.addPost(formData.newPost);
+    dispatch(actions.addPost(formData.newPost))
   }
 
   return (
@@ -28,7 +28,7 @@ const MyPosts: React.FC<MapPropsType & DispatchPropsType> = (props) => {
         <AddPostForm onSubmit={onAddPost}/>
       </div>
       <div className={st.posts}>
-        {props.postsData.map((item) => (
+        {postsData.map((item) => (
           <Post
             key={item.id}
             message={item.message}
@@ -37,7 +37,7 @@ const MyPosts: React.FC<MapPropsType & DispatchPropsType> = (props) => {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default MyPosts;
+export default MyPosts

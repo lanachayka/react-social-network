@@ -7,31 +7,33 @@ import ProfileDataForm from './ProfileDataForm/ProfileDataForm'
 import st from './ProfileInfo.module.css'
 // Types
 import { ProfileType, ContactsType } from '../../../types/types'
+// Redux
+import { useDispatch, useSelector } from 'react-redux'
+import { getProfile } from '../../../redux/selectors/profileSelectors'
+import { savePhoto, saveProfile } from '../../../redux/profileReducer'
 
 type PropsType = {
-  profile: ProfileType | null,
-  updateProfileStatus: (status: string) => void,
-  status: string,
   isOwner: boolean,
-  savePhoto: (file: File) => void,
-  saveProfile: (profile: ProfileType) => void
 }
 
-const ProfileInfo: React.FC<PropsType> = ({profile, updateProfileStatus, status, isOwner, savePhoto, saveProfile}) => {
+const ProfileInfo: React.FC<PropsType> = ({ isOwner }) => {
   
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(false)
+
+  const profile = useSelector(getProfile)
+  const dispatch = useDispatch()
   
   if (!profile) {
     return <Preloader />;
   }
   const onMainPhotoSelected = (e: any) => {
     if (e.target.files.lenght) {
-      savePhoto(e.target.files[0]);
+      dispatch(savePhoto(e.target.files[0]))
     }
   }
   const onSubmit = async (formData: ProfileType) => {
-    await saveProfile(formData)
-    setEditMode(false);
+    await dispatch(saveProfile(formData))
+    setEditMode(false)
   }
   const photo = profile.photos.large || profile.photos.small
   return (
@@ -50,10 +52,7 @@ const ProfileInfo: React.FC<PropsType> = ({profile, updateProfileStatus, status,
         {editMode
           ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
           : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => setEditMode(true)} />}
-        <Status
-            updateProfileStatus={updateProfileStatus}
-            status={status}
-          />
+        <Status />
       </div>
     </div>
   );

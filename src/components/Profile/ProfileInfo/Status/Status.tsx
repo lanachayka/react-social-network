@@ -1,36 +1,36 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getStatus } from '../../../../redux/selectors/profileSelectors'
+import { updateProfileStatus } from '../../../../redux/profileReducer'
 
-type PropsType = {
-    status: string,
-    updateProfileStatus: (status: string) => void
-}
+const Status: React.FC = () => {
+    const statusFromState = useSelector(getStatus)
+    const [editMode, setEditMode] = useState<boolean>(false)
+    const [status, setStatus] = useState<string>(statusFromState)
 
-const Status: React.FC<PropsType> = (props) => {
-    const [editMode, setEditMode] = useState<boolean>(false);
-    const [status, setStatus] = useState<string>(props.status);
+    const dispatch = useDispatch()
 
     const activateEditMode = () => {
-        setEditMode(true);
-        console.log(props.status);
+        setEditMode(true)
     }
 
     const deactivateEditMode = () => {
-        setEditMode(false);
-        props.updateProfileStatus(status);
+        setEditMode(false)
+        dispatch(updateProfileStatus(status))
     }
 
     const onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setStatus(event.target.value);
+        setStatus(event.target.value)
     };
 
     useEffect(() => {
-        setStatus(props.status);
-    }, [props.status])
+        setStatus(statusFromState)
+    }, [statusFromState])
 
     return (
         <>
             {!editMode
-                ? <><b>Status</b>: <span onDoubleClick={activateEditMode}>{props.status || "----------"}</span></>
+                ? <><b>Status</b>: <span onDoubleClick={activateEditMode}>{statusFromState || "----------"}</span></>
                 : <input
                     autoFocus={true}
                     defaultValue={status}

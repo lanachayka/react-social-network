@@ -3,31 +3,35 @@ import React from 'react'
 import Dialog from './Dialog/Dialog'
 import Message from './Message/Message'
 import AddMessageForm from './AddMessageForm/AddMessageForm'
-// Types
-import { DialogType, MessageType } from '../../types/types'
 // Styles
 import st from './Dialogs.module.css'
-
-export type DialogsPropsType = {
-  dialogsData: DialogType[],
-  messagesData: MessageType[],
-  sendMessage: (newMessage: string) => void
-}
+// Redux
+import { useDispatch, useSelector } from 'react-redux'
+import { actions } from '../../redux/messagesReducer'
+import { getDialogsData, getMessagesData } from '../../redux/selectors/messagesSelector'
+import { compose } from 'redux'
+// HOC
+import withAuthRedirect from '../../hoc/withAuthRedirect'
 
 type FormDataType = {
   newMessage: string
 }
 
-const Dialogs: React.FC<DialogsPropsType> = (props) => {
+const Dialogs: React.FC = () => {
+
+  const dialogsData = useSelector(getDialogsData)
+  const messagesData = useSelector(getMessagesData)
+
+  const dispatch = useDispatch()
 
   const onSubmit = (formData: FormDataType) => {
-    props.sendMessage(formData.newMessage);
+    dispatch(actions.sendMessage(formData.newMessage))
   }
 
   return (
     <div className={st.dialogs}>
       <div className={st.dialogsItems}>
-        {props.dialogsData.map((item) => (
+        {dialogsData.map((item) => (
           <Dialog
             key={item.id}
             id={item.id}
@@ -37,7 +41,7 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
         ))}
       </div>
       <div className={st.messages}>
-        {props.messagesData.map((item) => (
+        {messagesData.map((item) => (
           <Message key={item.id} message={item.message} />
         ))}
         <AddMessageForm onSubmit={onSubmit}/>
@@ -46,4 +50,4 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
   );
 }
 
-export default Dialogs;
+export default compose<React.ComponentType>(withAuthRedirect)(Dialogs);

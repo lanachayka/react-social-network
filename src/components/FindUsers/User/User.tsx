@@ -3,15 +3,16 @@ import st from './User.module.css'
 import userPhoto from '../../../assets/img/user.jpg'
 import { NavLink } from 'react-router-dom'
 import { UserType } from '../../../types/types'
+import { useDispatch } from 'react-redux'
+import { follow, unfollow } from '../../../redux/findUsersReducer'
 
 type PropsType = {
   followingInProgress: number[],
-  follow: (userId: number) => void,
-  unfollow: (userId: number) => void,
   user: UserType
 }
 
-const User: React.FC<PropsType> = ({followingInProgress, follow, unfollow, user}) => {
+const User: React.FC<PropsType> = ({ followingInProgress, user }) => {
+  const dispatch = useDispatch()
   return (
         <div className={st.user}>
           <div className={st.container}>
@@ -25,14 +26,14 @@ const User: React.FC<PropsType> = ({followingInProgress, follow, unfollow, user}
             {user.followed ? (
               <button
                 disabled={followingInProgress.some(id => id === user.id)}
-                onClick={() => unfollow(user.id)}
+                onClick={() => dispatch(unfollow(user.id))}
                 className={st.btn}>
                 UNFOLLOW
               </button>
             ) : (
                 <button
                   disabled={followingInProgress.some(id => id === user.id)}
-                  onClick={() => follow(user.id)}
+                  onClick={() => dispatch(follow(user.id))}
                   className={st.btn}>
                 FOLLOW
               </button>

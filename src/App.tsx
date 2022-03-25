@@ -8,6 +8,7 @@ import store from './redux/reduxStore'
 import { getAppInitialized } from './redux/selectors/appSelectors'
 //Styles
 import './App.css'
+import 'antd/dist/antd.css'
 // Components
 import Navbar from './components/Navbar/Navbar'
 import Header from './components/Header/Header'

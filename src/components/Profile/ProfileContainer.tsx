@@ -50,7 +50,7 @@ class ProfileContainer extends React.Component<PropsType> {
   componentDidUpdate(prevProps: PropsType) {
     if (this.props.match.params.userId !== prevProps.match.params.userId) {
       this.refreshProfile();
-    };
+    }
   }
 
   render() {
@@ -61,7 +61,7 @@ class ProfileContainer extends React.Component<PropsType> {
           isOwner={!this.props.match.params.userId}
         />
         </div>
-      );
+      )
   }
 }
 
@@ -69,8 +69,8 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     authorizedUserId: state.auth.id,
     isAuth: state.auth.isAuth
-  };
-};
+  }
+}
 
 export default compose<React.ComponentType>(
   connect(mapStateToProps, { getProfileInfo, getProfileStatus }),

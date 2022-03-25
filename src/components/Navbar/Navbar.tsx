@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import FriendsContainer from './Friends/FriendsContainer'
+import Friends from './Friends/Friends'
 import st from './Navbar.module.css'
 import search from './search_white.svg'
 
@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
       <NavLink to="/settings" activeClassName={st.active} className={st.item}>
         SETTINGS
       </NavLink>
-      <FriendsContainer />
+      <Friends />
     </nav>
   );
 }

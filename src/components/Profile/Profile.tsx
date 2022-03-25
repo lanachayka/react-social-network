@@ -12,7 +12,7 @@ const Profile: React.FC<PropsType> = (props) => {
         <ProfileInfo isOwner={props.isOwner} />
         <MyPosts />
       </div>
-    );
+    )
 }
 
 export default Profile

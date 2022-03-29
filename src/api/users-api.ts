@@ -7,10 +7,12 @@ type FollowRequestType = {
 
 export const userAPI = {
     getUsers(currentPage = 1, pageSize = 10, term = '', friend: null | boolean = null) {
-        return instance.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}&term=${term}`
-            + (friend === null) ? '' : `&friend=${friend}`
-        )
-            .then(response => response.data)
+        if (friend === null) {
+            return instance.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}&term=${term}`
+            ).then(response => response.data)
+        }
+        return instance.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}&term=${term}&friend=${friend}`
+        ).then(response => response.data)
     },
     follow(id: number) {
         return instance.post<FollowRequestType, AxiosResponse<ResponseType>>(`follow/${id}`)

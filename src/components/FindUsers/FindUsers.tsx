@@ -62,7 +62,7 @@ const FindUsers: React.FC<PropsType> = ({pageTitle}) => {
     if (currentPage !== 1) query.page = String(currentPage)
 
     history.push({
-      pathname: '/users',
+      pathname: '/developers',
       search: querystring.stringify(query)
     })
   }, [filter, currentPage])

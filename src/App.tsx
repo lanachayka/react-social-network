@@ -25,8 +25,15 @@ const FindUsers = React.lazy(() => import('./components/FindUsers/FindUsers'))
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
+
+  const catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
+    alert('Some error occured')
+  }
+
   useEffect(() => {
     dispatch(initializeApp())
+    window.addEventListener('unhandledrejection', catchAllUnhandledErrors)
+    return window.removeEventListener('unhandledrejection', catchAllUnhandledErrors)
   }, [])
 
   const initialized = useSelector(getAppInitialized)

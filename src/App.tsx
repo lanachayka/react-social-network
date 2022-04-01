@@ -13,8 +13,8 @@ import { Layout, Menu, Breadcrumb } from 'antd'
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons'
 // Components
 import Navbar from './components/Navbar/Navbar'
-// import Header from './components/Header/Header'
 import Preloader from './components/common/Preloader/Preloader'
+import AppHeader from './components/AppHeader/Header';
 const Dialogs = React.lazy(() => import('./components/Dialogs/Dialogs'))
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 const Login = React.lazy(() => import('./components/Login/Login'))
@@ -36,18 +36,11 @@ const App: React.FC = () => {
   }
 
   const { SubMenu } = Menu
-  const { Header, Content, Footer, Sider } = Layout
+  const { Content, Footer, Sider } = Layout
 
   return (
     <Layout>
-      <Header className="header">
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          <Menu.Item key="1">
-            <Link to="/developers">Developers</Link>
-          </Menu.Item>
-        </Menu>
-      </Header>
+      <AppHeader />
       <Content style={{ padding: '0 50px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -116,7 +109,7 @@ const App: React.FC = () => {
           </Content>
         </Layout>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+      <Footer style={{ textAlign: 'center' }}>React Social Network</Footer>
     </Layout>
     // <div className="app-wrapper">
     //   <Header />
